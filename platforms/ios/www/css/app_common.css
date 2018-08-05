@@ -1,0 +1,202 @@
+﻿._3jk {
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+._n {
+	bottom: 0;
+	cursor: inherit;
+	font-size: 1000px !important;
+	height: 300px;
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+}
+
+.file-button {
+    background: #904e95;
+    border: 1px solid #804e95;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 12px 6px;
+    position: relative;
+    text-align: center;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.loaderIcon
+{
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 15px);
+    transform: translate(-50%,-50%);
+    z-index: 30;
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #009fdb;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader, .overlay
+{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(180,180,180,0.6);
+    position: absolute;
+    z-index: 20;
+    display:none;
+    pointer-events:auto;
+}
+
+.add-template-row {
+  padding-left: 10px;
+  width: 100%;
+  float: left;
+  /*display: none;*/
+  margin-top:50px;
+}
+
+.add-template-row i {
+  font-size: 32px;
+}
+
+.smsTemplate ion-content
+{
+    margin-top:50px;
+}
+
+.addtemplate
+{
+    margin-bottom: 10px;
+    display:none;
+}
+
+.templateListItem
+{
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+}
+.templateHeading
+{
+    float:left;
+}
+.templateText 
+{
+    width:100%;
+ }
+ .RightIconsDiv
+ {
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+ }
+ 
+ .editButton
+ {
+     /*display:none;*/
+ }
+ 
+ #TemplateDescription, #TemplateName
+ {
+     width:100%;
+ }
+.templateDescription, .templateName
+ {
+     width:100%;
+     padding:5px;
+     border: 1px solid #904e95;
+     margin-bottom:10px;
+ }
+ 
+ .button.button-positive.button-clear {
+    color: #904e95;
+}
+
+.showCustomPopup
+{
+    width: 80%;
+    min-height: 10%;
+    background: whitesmoke;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px; 
+    z-index:100;  
+    border : 1px solid #009fdb;
+}
+.showCustomPopup .popupHeaderClose, .showCustomPopup .popupBack
+{
+    font-size: 16px;
+    float: right;
+    margin-right: 10px;
+    font-weight: 900;   
+    height:30px;
+}
+.showCustomPopup .popupBody
+{
+    margin-top: -10px;
+}
+.showCustomPopup .popupBack
+{
+    float: left;
+    margin-left: 10px;
+    font-size: 20px;
+    font-family: monospace;
+}
+.customPopUp .Msg
+{
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.customPopUp .Msg .noContacts
+{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+}
+
+.showCustomPopup a 
+{
+    color: black;
+    text-decoration: none;
+}
+.customPopUp .option    
+{
+    margin: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.customPopUp .option div
+{
+    margin-bottom: 10px;
+}

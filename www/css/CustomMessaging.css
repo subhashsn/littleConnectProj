@@ -1,0 +1,279 @@
+﻿#ms-scrollbar::-webkit-scrollbar-track
+        {
+            background-color: #CCCCCC;
+        }
+        #ms-scrollbar::-webkit-scrollbar
+        {
+            width: 7px;
+            background-color: #F5F5F5;
+        }
+        #ms-scrollbar::-webkit-scrollbar-thumb
+        {
+            background-color: #eeeeee;
+            -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
+        }
+        .ms-new
+        {
+            box-shadow: 0 2px 5px rgba(0,0,0,0.16),0 2px 10px rgba(0,0,0,0.12);
+            background-color: #2196f3;
+        }
+        .content {
+    padding: 0 0 0 0 !Important;
+        }
+        .container-fluid
+        {
+            padding-left:0 !important;
+        }
+        #messages-main .ms-menu
+        {
+            height:100% !Important;
+        }
+        .listview .lv-message
+        {
+            height:90% !Important;
+        }
+        
+        .parentCustomRow
+        {
+            margin:0;
+            margin-top: 20px;
+        }
+        
+        .parentClass,.groupClass
+        {
+            font-weight:bold;
+            font-size: 19px;
+                background-color: aquamarine !Important;
+        }
+        
+        .customRowStyles
+        {
+            margin: 0;
+    border-bottom: 2px solid beige;
+    background: white;
+    cursor:pointer;
+        }
+        
+        .childClass
+        {
+            display:none;
+        }
+        
+        .groupingList
+        {
+            margin-top:4px;
+        }
+        
+        #txtSearchContacts,#txtGroupSearch
+        {
+            height: 35px;
+    margin-left: 5%;
+    border-radius:10px;
+        }
+        
+        .syle-txtbox
+        {
+            margin-top:10px;
+        }
+#clickForBack
+{
+    cursor:pointer;margin-top: 20px;text-align: center;
+    text-decoration: underline;
+    color: blue;
+}        
+
+.student-image
+{
+    height: 60%;
+    width: 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-size: cover;
+    margin-top: 10px;
+}
+
+.class-group-image
+{
+    height: 60%;
+    width: 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-size: contain;
+    margin-top: 10px;
+}
+
+.classNames-show
+{
+    font-style:italic;
+}
+
+
+.vCenter
+{
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.groupDetails:hover
+{
+        background-color: aquamarine;
+}
+
+.groupSelected
+{
+     background-color: aquamarine;
+}
+
+#contact-details
+{
+    overflow-y: auto; overflow-x: hidden;position:absolute;z-index:1;width:0px;
+}
+
+#showRecentList
+{
+    overflow-y: scroll; overflow-x: hidden;
+}
+
+.ms-empty-body
+{
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    float: left;
+    background-color: aliceblue;
+    opacity: 0.9;
+}
+
+.show-empty-text
+{
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    top: 50px;
+}
+
+.show-empty-logo
+{
+   margin-top: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 46%;
+    width: 36%;
+    background-image: url(../../images/Profile_old.png);
+    border-radius: 50%;
+    margin-left: 28%;
+}
+
+#msg-content
+{
+    overflow:auto;
+    height:440px;
+    overflow-x: hidden;
+}
+
+#createCustomGroup{
+    background-color: aliceblue;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+#createCustomGroup div
+{
+    height:40px;
+}
+
+#groupSelectiondetails
+{
+    max-height: 80px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 1px;
+}
+
+.groupSelStudents
+{
+    margin-left:15px;
+}
+
+.contact-name,.contact-remove
+{
+    float:left;
+}
+
+.eachSelection
+{
+        width: auto;
+    border-radius: 10px;
+    background: beige;
+    margin-top: 5px;
+}
+
+.contact-remove
+{
+        margin-left: 10px;
+    cursor: pointer;
+}
+
+.student-group-image
+{
+    background-image:url('../../images/GroupAccepted.png') !Important;
+}
+
+.create-group
+{
+    background-image:url('../../images/GroupAccepted.png') !Important;
+    height:20px;
+    width:30px;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:contain;
+     cursor:pointer;
+}
+
+#txtNewGroup
+{
+    height: 36px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
+.create-group-style
+{
+    margin-left:-14px;
+}
+
+#view-Group-students
+{
+    cursor:pointer;
+}
+
+.deleteIconStyle
+{
+    margin-top:10px;
+    cursor:pointer;
+}
+
+.unreadCount
+{
+    border: 1px solid gray;
+    width: auto;
+    border-radius: 10px;
+    float: right;
+    margin-top: -8%;
+}
+
+.student-name
+{
+    font-size: x-small;
+    font-weight: bold;
+    text-decoration: underline;
+    font-style: italic;
+}

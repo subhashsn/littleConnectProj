@@ -1,0 +1,42 @@
+<ion-modal-view>
+       <ion-header-bar class="bar bar-header custom-header">
+    <div class="row">
+      <div class="col-90"><div class="h-title">Add Recipients</div></div>
+      <div class="col-10"><button class="button button-clear button-primary mm-btn" id="closeReceipts" ng-click="modal.hide()"><i class="ion-ios-close-empty"></i></button></div>
+    </div>
+
+    </ion-header-bar>
+        <ion-content class="padding">
+            <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content pulling-icon="arrow-dropdown"
+                                       pulling-text="Pull to refresh"
+                                       refreshing-spinner="circles"
+                                       refreshing-text="Refreshing...">
+                </ion-refresher-content>
+            </ion-refresher>
+              <!-- Invitees starts-->
+              <div ng-show="inviteesBox" class="inviteesBox sms-students" style="display:block !Important;">
+                <ion-list>
+                <div ng-repeat="group in groups">
+                  <ion-item class="item-stable" ng-class="{active: isGroupShown(group)}" >
+                      <i class="icon pull-right" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'" ng-click="toggleGroup(group)"></i>
+                    &nbsp;
+                     <input type="checkbox" class="parentsCheck h-check parent_{{group.ClassName_Style}}" title="{{group.ClassName}}" ng-click="selectAllChild($event)">
+                      <span class="groupname"> {{group.ClassName}}</span>
+                          </ion-item>
+                          <ion-item class="item-accordion" ng-repeat="item in group.data" ng-show="isGroupShown(group)">
+                            <input type="checkbox"  title="{{item.StudentName}}" ng-mob = "{{item.MobNo}}" ng-click="student_Click(group.ClassName_Style,$event)" class="students sms_{{group.ClassName_Style}}" 
+                            id="{{item.StudentID}}"> {{item.StudentName}}
+                          </ion-item>
+                </div>
+              </ion-list>
+              </div>
+                <!-- Invitees ends-->
+                     
+   
+    
+<div class="btn-footer">
+            <button class="button btn-red  btn" ng-click="addSmsReceipt($event); modal.hide();">ADD</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>

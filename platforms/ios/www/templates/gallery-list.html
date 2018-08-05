@@ -1,0 +1,60 @@
+<ion-view view-title="Gallery Album" ng-init="getGalleryFolder()" id="photoAlbumThumbnails">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-left button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="gallery-album">
+      <ion-refresher on-refresh="doRefresh($event)">
+          <ion-refresher-content pulling-icon="arrow-dropdown"
+                                 pulling-text="Pull to refresh"
+                                 refreshing-spinner="circles"
+                                 refreshing-text="Refreshing...">
+          </ion-refresher-content>
+      </ion-refresher>
+      
+   <div class="add-album-row">
+       <button class="button button-clear button-positive pull-right" ng-click="addAlbum()">
+         <i class="ion-ios-plus-outline"></i>
+       </button>
+   </div>
+    <div class="addalbum" ng-show="showaddAlbum">
+          <div class="list list-inset">
+          <label class="item item-input mar-5">
+            <input id="txtAlbumName" type="text" placeholder="Album Name">
+          </label>
+          <label class="item item-input mar-5">
+            <input id="txtDescription" type="text" placeholder="Description">
+          </label>
+          <label class="item item-input mar-5">
+            <input id="txtLocation" type="text" placeholder="Location">
+          </label>
+          <button type="button" class="button button-positive btn-blue btn-success add-albm-hd" id="btnSave" ng-click="AddGalleryMasterSave()">Save</button>
+            <!--<button type="button" class="btn btn-default" id="btnRest">Reset</button>-->
+            <!--<button type="button" class="button button-positive btn-blue btn-default can-albm-hb" id="btnCancel" onclick="clearEntry()" >Cancel</button>-->
+            <button class="button button-positive btn-blue btn-default" type="button" id="btnClose" title="Close" ng-click="CloseGalleryMasterSave()">Close</button>
+        </div>
+    </div>
+
+<div class="row" ng-repeat="foldersList in galleryFoldersList.GetGalleryList" style="width:50% !Important;float:left;">
+<div class="col" ng-click="gotoGallery({{foldersList.GalleryID}})"> 
+  <div class="list card">
+    <div class="item item-image">
+      <img src="https://www.littleconnect.in/Templates/GalleryImage.png">
+      <!-- overlay controll component -->
+      <div class="overlay-controll">
+      <div class="ctrl-row">
+        <div class="left-ctrl">
+          <i class="ion-images"></i>
+          <span class="album-name">{{foldersList.AlbumName}}</span>
+        </div>
+        <div class="right-ctrl">{{foldersList.TotalCount}}</div>
+      </div>
+      </div>
+      <!-- overlay ends -->
+    </div>
+  </div>
+</div>
+</div>
+
+  </ion-content>
+</ion-view>

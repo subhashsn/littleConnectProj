@@ -1,0 +1,207 @@
+﻿<ion-view view-title="Class Attendance" id="calender_student_dtls" ng-controller="PlaylistsCtrl">
+   <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="classAttendance">
+        <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content 
+                    pulling-icon="arrow-dropdown"
+                    pulling-text="Pull to refresh"
+                    refreshing-spinner="circles"
+                    refreshing-text="Refreshing...">
+                </ion-refresher-content>
+        </ion-refresher>
+            <div class="p-view student_attendance" style="display:none">
+    <div class="padding calendar-container" ng-init="getStudentCalendarDetails(0,0)"></div>
+    <div class="student-attendance-header" ng-click="openQRScanner()">
+        <div class="student-profile">
+            <img src="img/defaultImg.jpg" width="100%">
+        </div>
+        <div class="student-details">
+            <p class="row-1-att" id="student_name">Student Name</p>
+            <p class="row-2-att" id="class_name">Student Name</p>
+            <!--<p class="row-2-att" id="absents_count">Student Name</p>-->
+        </div>
+    </div>
+    <div class="bind-student-calendar">
+    <div pickadate="" ng-model="date" min-date="minDate"></div>
+    </div>
+    </div>
+  <!-- parent attendance section ends -->
+    <div class="m-view admin-attendance">   
+    <!-- section two starts -->
+    <section class="s-two">
+      <div class="row">
+      <div class="col-50" ng-init="loadClassForAttendance()">
+        <select class="mm-input" id="options_cls" ng-model="selected" ng-change="loadStudentForAttedance(selected)" 
+        ng-options="item.ClassId as item.ClassName for item in attendanceClass" >
+        </select>
+      </div>
+     <div class="col-50">
+         <input type="date" name="attandence" class="mm-input to-right" id="set_date_for_attendance" ng-change="getAttendanceDateWise($event)" ng-model="myValue" max="">
+      </div> 
+    </div>
+ </section>
+  </div>
+
+        <ul class="tabs list-item">
+                <li class="tab-link button-white button-xs first active-tab-blue" data-tab="tab-1" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-1').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-1\']').addClass('active-tab-blue');"><div class="middleAlign">Day Wise</div></li>
+				<li class="tab-link button-white button-xs" data-tab="tab-2" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-2').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-2\']').addClass('active-tab-blue');"><div class="middleAlign">All</div></li>
+				<li class="tab-link button-white button-xs" data-tab="tab-3" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-3').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-3\']').addClass('active-tab-blue');"><div class="middleAlign">Checked-In</div></li>
+				<!--	<li class="tab-link button-white button-xs" data-tab="tab-3" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-3').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-3\']').addClass('active-tab-blue');">Email</li> -->
+				<li class="tab-link button-white button-xs last" data-tab="tab-4" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-4').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-4\']').addClass('active-tab-blue');"><div class="middleAlign">Checked-Out</div></li>
+		</ul>
+        <hr>
+       <div id="tab-1" class="tab-content active-tab-content">
+			<!-- Daywise -->
+			
+      <div class="list-group sms scroll-content ionic-scroll overflow-scroll  has-header" style="height: 500px;">
+     <!-- <div class="row" ng-if="attendanceStudent.length>0" style="padding-top: 10px;padding-left: calc(90% - 40px);">             
+              <label class="toggle toggle-positive">
+                <input type="checkbox" class="check_all_stu" ng-click="check_all_students($event)">
+                <div class="track">
+                  <div class="handle"></div>
+                </div>
+              </label>
+        </div>-->
+        <div class="list-item row" ng-repeat="_x in attendanceStudent | orderBy:'StudentName'">
+         <!-- <div class="col-30">
+            <div class="thumb">
+            <img src="img/stud-thumb.jpg"/>
+            </div>
+          </div>-->
+            <div class="col-30">
+            <p style="padding-top: 16px;">
+                {{$index + 1}}
+            </p>
+          </div>
+           <div class="col-50 thumb-dec">
+           <p style="padding-top: 16px;">{{_x.StudentName}}</p>
+            <!--<p>Decription</p>-->
+           </div>
+            <div class="col-20 last-blk">
+              <!--<span class="ion-ios-help help-icon"></span>-->
+              <label class="toggle toggle-positive">
+                <input type="checkbox" class="students_class {{_x.checked}}" id="student_{{_x.StudentId}}">
+                <div class="track">
+                  <div class="handle"></div>
+                </div>
+              </label>
+            </div>
+        </div>
+        <div ng-show="showNoStudents" class="no_students">No Students</div>
+        <div ng-show="holidayMsg" class="no_students">Today Holiday</div>        
+    </div>
+    <div class="bottomButtonSelected" style="position: absolute;bottom: 0px;width: 100%;" ng-if="attendanceStudent.length > 0">
+                    <div class="bottomButton absent" ng-show="saveNoStudents" ng-click="saveAttendance('daywise')">
+                        <div class="middleAlign">
+                            <div class="saveText">SAVE</div>
+                        </div>
+                    </div>
+                    <div class="bottomButton reached" ng-click="PublishAttendance()">
+                        <div class="middleAlign">
+                            <div class="publishText">PUBLISH</div>
+                        </div>
+                    </div>
+                </div>
+  <!-- Management attendance -->
+
+	   </div>
+       <div id="tab-2" class="tab-content all">
+				<!-- All -->               
+
+                   <!-- <div class="leftCircle"  ng-if="attendanceStudent.length>0">
+                        <div class="cornerCircle">
+                        </div>
+                    </div>-->
+             <div class='itemLists'>
+                <div ng-repeat= "_x in classWiseStudentList | orderBy:'StudentName'" class="outerSquare">  <!--ng-repeat="_x in classWiseStudentList | orderBy:'StudentName'"-->
+                    <div class="imageCircle" studentId="{{_x.StudentId}}" ng-click="selectStudentForCheckIn(_x.StudentId,$event)">
+                        <img src="/img/stud-thumb.jpg">
+                        <div class="cornerCircle">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+                <div ng-show="showNoStudents" class="no_students">No Students</div>
+                <div ng-show="holidayMsg" class="no_students">Today Holiday</div>
+                <div class="bottomButtonSelected" style="position: absolute;bottom: 0px;width: 100%;display:none;">
+                    <div class="bottomButton absent" ng-if="attendanceStudent.length > 0" ng-click="markStudentAsAbsent($event)">
+                        <div class="middleAlign">
+                            <div class="absentText">MARK ABSENT</div>
+                        </div>
+                    </div>
+                    <div class="bottomButton reached" ng-if="attendanceStudent.length > 0" ng-click="markStudentAsCheckedIn('all')">
+                        <div class="middleAlign">
+                            <div class="reachedText">REACHED SCHOOL</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottomButton scan" ng-if="attendanceStudent.length>0" style="display:block;">
+                    <div class="middleAlign">
+                        <div class="scanText">SCAN CODE</div>
+                    </div>
+                </div>
+		</div>
+        <div id="tab-3" class="tab-content checkIn">
+			<!-- Checked-In -->
+            <div class='itemLists'>
+                <div ng-repeat= "_x in checkedInStudent | orderBy:'StudentName'" class="outerSquare">  <!--ng-repeat="_x in classWiseStudentList | orderBy:'StudentName'"-->
+                    <div class="imageCircle" studentId="{{_x.StudentId}}" ng-click="selectStudentForCheckIn(_x.StudentId,$event)">
+                        <img src="/img/stud-thumb.jpg">
+                        <div class="cornerCircle checkedOut">
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="bottomButtonSelected" style="position: absolute;bottom: 0px;width: 100%;display:none;">
+                    <!--<div class="bottomButton absent" ng-if="attendanceStudent.length > 0" ng-click="markStudentAsAbsent($event)">
+                        <div class="middleAlign">
+                            <div class="absentText">MARK ABSENT</div>
+                        </div>
+                    </div>-->
+                    <div class="bottomButton left" ng-if="attendanceStudent.length > 0" ng-click="markStudentAsCheckedIn('checkIn')">
+                        <div class="middleAlign">
+                            <div class="reachedText">LEFT SCHOOL</div>
+                        </div>
+                    </div>
+                </div>
+            <div class="bottomButton scan">
+                <div class="middleAlign">
+                    <div class="scanText">SCAN CODE</div>
+                </div>
+            </div>
+		</div>
+        <div id="tab-4" class="tab-content checkOut">
+			<!-- Checked-Out -->
+            <div class='itemLists'>
+                <div ng-repeat= "_x in checkedOutStudent | orderBy:'StudentName'" class="outerSquare">  <!--ng-repeat="_x in classWiseStudentList | orderBy:'StudentName'"-->
+                    <div class="imageCircle" studentId="{{_x.StudentId}}" ng-click="selectStudentForCheckIn(_x.StudentId,$event)" style="pointer-events: none;">
+                        <img src="/img/stud-thumb.jpg">
+                        <div class="cornerCircle checkedOut addCheckOut">
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="bottomButtonSelected" style="position: absolute;bottom: 0px;width: 100%;display:none;">
+                    <div class="bottomButton absent" ng-if="attendanceStudent.length > 0" ng-click="markStudentAsAbsent($event)">
+                        <div class="middleAlign">
+                            <div class="absentText">MARK ABSENT</div>
+                        </div>
+                    </div>
+                    <div class="bottomButton reached" ng-if="attendanceStudent.length > 0" ng-click="markStudentAsCheckedIn('checkOut')">
+                        <div class="middleAlign">
+                            <div class="reachedText">REACHED SCHOOL</div>
+                        </div>
+                    </div>
+                </div>
+            <div class="bottomButton scan">
+                <div class="middleAlign">
+                    <div class="scanText">SCAN CODE</div>
+                </div>
+            </div>
+		</div>        
+  </ion-content>  
+</ion-view>

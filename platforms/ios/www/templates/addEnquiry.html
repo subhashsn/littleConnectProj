@@ -1,0 +1,56 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive addenq-title">
+            <button class="button button-clear button-primary cancel" ng-click="addEnquiry.hide()">Cancel</button>
+      <h1 class="title">New Enquiry</h1>
+      <button class="button button-clear button-primary" ng-click="addEnquiry.hide()">Save</button>
+    </ion-header-bar>
+    <ion-content class="custom-container padding addenquiry">
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+             
+                <input type="text" placeholder="Title ">
+              </label>
+     
+          </div>
+          <div class="row border-button-row">
+                <div class="col">
+                        <button class="button button-light">
+                                Todo
+                              </button>
+                </div>
+                <div class="col">
+                        <button class="button button-light">
+                                Call
+                              </button>
+                </div>
+                <div class="col">
+                        <button class="button button-light">
+                                Email
+                              </button>
+                </div>
+    
+              </div>
+              <div class="list">
+                    <label class="item item-input item-stacked-label">
+                     
+                        <input type="datetime-local" placeholder="Due Date & Time ">
+                      </label>
+                      
+                  </div>
+                  <div class="list">
+
+                        <label class="item item-input item-stacked-label">
+                     
+                                <input type="text" placeholder="Assigned to">
+                              </label>
+                  </div>
+                  
+    </ion-content>
+  </ion-modal-view>

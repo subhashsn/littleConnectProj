@@ -1,0 +1,47 @@
+﻿<ion-view view-title="Pupil Register" id="pupilRegister">
+         <ion-header-bar class="bar bar-header custom-header">
+            <div class="row">
+                <div class="col-15 cancel">
+                <button class="button button-clear button-primary mm-btn" id="cancelReceipt" ng-click="pupilRegisterLoad.hide()">
+                    <div class=""><span class="arrow"><</span>Back</div>
+                </button>
+                </div>
+                <div class="col-75 text">
+                    <div class="middleAlign">
+                        <div class="h-title">Pupil Register</div>
+                    </div>
+                </div>
+                <button class="button button-clear button-positive btn-circle add-r" ng-click="openAddPupil()">
+                    <div class="addFeeReciept">+</div>
+                </button>  
+             </div>               
+        </ion-header-bar>
+  <ion-content class="pupilRegister">
+  <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content 
+                    pulling-icon="arrow-dropdown"
+                    pulling-text="Pull to refresh"
+                    refreshing-spinner="circles"
+                    refreshing-text="Refreshing...">
+                </ion-refresher-content>
+        </ion-refresher>
+  <div role="main" class="ui-content">
+		<!--- <div class="content-primary"> -->
+		    <div class="search row syle-txtbox" style="margin-right: 0px;width:100%; margin-top: -11px;">
+                         <img class="search-icon" src="img/searchicon.png" style="display:block">
+		     <input type="text" placeholder="search contacts" class="form-control input-sm" id="txtSearchContacts" />
+		    </div>
+		<!--/ </div> content-primary -->	
+   </div>
+  <div class="list-item" ng-repeat="item in pupilContacts | orderBy:'StudentName'" style="position: relative;display: flex;padding: 10px;">
+        <div class="row studentInfo" ng-click="callPopup(item)">
+            <div class="profileImage"><img src="/img/gender-neutral-user.png"></div>
+            <div class="contactsDetails" studentId="item.StudentId" >
+                <div class="Name"><span style="font-weight: 700;">Name : </span><span>{{item.StudentName}}</span></div>
+                <div class="ClassName"><span>Class Name : </span><span>{{item.ClassName}}</span></div>
+            </div>
+            <div class="arrowDiv"><span class="arrow"></span>></div>
+        </div>
+  </div>
+  </ion-content>  
+</ion-view>

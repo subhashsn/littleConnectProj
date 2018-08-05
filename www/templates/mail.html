@@ -1,0 +1,43 @@
+<ion-view view-title="Email">
+    <ion-nav-buttons side="left" ng-init="closeMenu()">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()"></button>
+    </ion-nav-buttons>
+    <ion-content class="email" ng-init="loadEmails()">
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <ion-nav-buttons side="primary">
+            <button class="button button-icon icon ion-ios-minus-outline" ng-click="data.showDelete = !data.showDelete"></button>
+        </ion-nav-buttons>
+
+        <ion-list show-delete="data.showDelete">
+            <!--href="#/emails/{{email.id}}"-->
+            <ion-item ng-repeat="email in emails" class="item-icon-left item-remove-animate" ng-click="viewEmail(email.id);modal.show()">
+                <i class="icon"
+                   ng-class="{'ion-ios-email-outline': email.was_read, 'ion-ios-email': !email.was_read}"></i>
+                <h2>{{email.from}}</h2>
+                <p>
+                    <span class="email-text">
+                        {{email.subject}}
+                    </span>
+                    <span class="item-note email-text">
+                        {{email.date | date:'EEE M/d/yyyy h:mm a'}}
+                    </span>
+                </p>
+                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(email)">
+                </ion-delete-button>
+            </ion-item>
+
+        </ion-list>
+
+
+    </ion-content>
+    <div class="float-btn" id="composeMailClick" ng-click="composeMail.show()">
+        <span class="ion-plus" data-pack="default"></span>
+    </div>
+
+</ion-view>

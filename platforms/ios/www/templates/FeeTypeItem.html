@@ -1,0 +1,31 @@
+﻿<ion-modal-view class="addFeeReceiptTemplate">
+       <ion-header-bar class="bar bar-header custom-header">
+            <div class="row">
+                <div class="col-15 cancel">
+                <button class="button button-clear button-primary mm-btn" id="cancelReceipt" ng-click="feeTypeList.hide()">
+                    <div class=""><span class="arrow"><</span>Back</div>
+                </button>
+                </div>
+                <div class="col-75 text">
+                    <div class="middleAlign">
+                        <div class="h-title">Items</div>
+                    </div>
+                </div>
+             </div>               
+        </ion-header-bar>
+        <ion-content> 
+        <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content 
+                    pulling-icon="arrow-dropdown"
+                    pulling-text="Pull to refresh"
+                    refreshing-spinner="circles"
+                    refreshing-text="Refreshing...">
+                </ion-refresher-content>
+        </ion-refresher>            
+              <div class="list-item fee-list" ng-repeat="item in feeList" ng-receiptid="{{receipt.FeeReceiptId}}">
+                    <div class="row" ng-click="addFeeItemType(item)" feetypeid= {{item.FeeTypeId}} > 
+                          {{item.FeeTypeName}}                         
+                    </div>
+              </div>
+        </ion-content>
+</ion-modal-view>

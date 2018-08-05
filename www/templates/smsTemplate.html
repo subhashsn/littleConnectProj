@@ -1,0 +1,65 @@
+﻿<ion-modal-view class="smsTemplate">
+       <ion-header-bar class="bar bar-header custom-header">
+            <div class="row">
+                <div class="col-90"><div class="h-title">Add Template</div></div>
+                <div class="col-10"><button class="button button-clear button-primary mm-btn" id="closeReceipts" ng-click="addSmsTemplate.hide()"><i class="ion-ios-close-empty"></i></button></div>
+            </div>
+        </ion-header-bar>
+                <div class="add-template-row">
+                    <button class="button button-clear button-positive pull-right" ng-click="addCustomTemplate()">
+                        <i class="ion-ios-plus-outline"></i>
+                     </button>
+                </div>
+        <ion-content class="padding">
+            <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content pulling-icon="arrow-dropdown"
+                                       pulling-text="Pull to refresh"
+                                       refreshing-spinner="circles"
+                                       refreshing-text="Refreshing...">
+                </ion-refresher-content>
+            </ion-refresher>
+              <div  class="sms-templates" style="display:block !Important;">             
+                <div class="addtemplate">
+                    <!--<div class="list list-inset">
+                        <label class="item item-input mar-5">-->
+                        <div class="templateName">
+                            <input id="TemplateName" type="text" placeholder="Template Name">
+                        </div>
+                        <!--</label>
+                        <label class="item item-input mar-5">-->
+                        <div class="templateDescription">
+                            <textarea id="TemplateDescription" type="text" placeholder="Template Description"></textarea>
+                        </div>
+                        <!--</label>-->
+                        <button type="button" class="button button-positive btn-blue btn-success add-albm-hd" id="btnSave" ng-click="AddTemplateSave()">Add</button>
+                  <!--<button type="button" class="btn btn-default" id="btnRest">Reset</button>-->
+                  <!--<button type="button" class="button button-positive btn-blue btn-default can-albm-hb" id="btnCancel" onclick="clearEntry()" >Cancel</button>-->
+                        <button class="button button-positive btn-blue btn-default" type="button" id="btnEdit" title="Close" ng-click="editTemplateItem()">Edit</button>
+                        <button class="button button-positive btn-blue btn-default" type="button" id="btnClose" title="Close" ng-click="CloseTemplateSave()">Close</button>
+                    <!--</div>-->
+                </div>
+               <ion-list>
+                    <div ng-repeat="template in templates">
+                      <ion-item class="item-stable" ng-templateid="{{template.TemplateId}}">    
+                          <div class="templateListItem templateHeading"><b> {{template.TemplateName}}</b></div><br/><br/>
+                          <div class="RightIconsDiv">   
+                            <button class="button button-clear button-positive pull-right editButton" ng-click="editTemplate(template.TemplateId)">
+                                <i class="ion-ios-plus-outline"></i>
+                            </button>
+                            <button class="button button-clear button-positive pull-right deleteButton" ng-click="deleteTemplateItem(template.TemplateId)">
+                                <i class="ion-ios-minus-outline"></i>
+                            </button>
+                            <button class="button button-clear button-positive pull-right addButton" ng-click="addTemplateItem(template)">
+                                <i class="ion-ios-plus-outline"></i>
+                            </button>
+                           </div>
+                          <div class="templateListItem templateText"> {{template.Description}}</div>                         
+                       </ion-item>        
+                    </div>
+                </ion-list>
+              </div>
+            <!--div class="btn-footer">
+            <button class="button btn-red  btn" ng-click="addSmsReceipt($event); modal.hide();">ADD</button>
+            </div>-->
+        </ion-content>
+</ion-modal-view>

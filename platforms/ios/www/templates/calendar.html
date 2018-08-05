@@ -1,0 +1,67 @@
+<ion-view view-title="Calendar" ng-controller="PlaylistsCtrl" id="calender_dtls">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="padding calendar-container" ng-init="loadCalenderEvents()">
+            <!-- <onezone-datepicker datepicker-object="onezoneDatepicker">
+            <button class="button button-block button-outline button-positive show-onezone-datepicker">
+            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
+            </button>
+            </onezone-datepicker> -->
+            <div pickadate="" ng-model="date" min-date="minDate"></div>
+            <!--  <div class="selected-date">
+                Selected date is {{date || '(no date selected)'}}
+              </div>-->
+        </div>
+        <div class="upcoming-events" ng-repeat="events in eventsLists">
+            ">
+                          <!-- event card s
+            ta
+            rts -->
+            <div class="event-c
+            <div class="event-card">
+                <div class="row">
+                    <div class="col-30"><span class="fullday">="
+All Day
+                    
+                    <span></div>
+                    ="
+                    
+                    <div class="col-70">
+                        <div class="left-circle">
+                            <span class="circle-ponter"></span>
+                        </div>
+                        <span class="event-name">{{events.Title}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- event card ends -->
+        </div>
+        <div class="upcoming-events">
+            <!-- event card starts -->
+            <div class="event-card" ng-click="eventDetails()">
+                <!--<div class="row">
+                  <div class="col-30"><span class="fullday">All Day<span></div>
+                   <div class="col-70">
+                     <div class="left-circle">
+                       <span class="circle-ponter"></span>
+                     </div>
+
+                    <span class="event-name"></span>
+                  </div>
+                </div>-->
+            </div>
+            <!-- event card ends -->
+
+        </div>
+    </ion-content>
+    <button id="btnCalenderAdd" class="button icon ion-ios-plus-empty add-btn" ng-click="modal.show()"></button>
+</ion-view>

@@ -1,0 +1,92 @@
+body {
+  cursor: url('https://ionicframework.com/img/finger.png'), auto;
+}
+
+.email-text {
+  font-size: smaller !important;
+  color: grey !important;
+}
+
+.email-body-text {
+  font-size: smaller !important;
+}
+.attachment > input
+{
+    opacity: 0;
+    width: 29px;
+    float: right;
+    margin-top: 6px;
+}
+
+.attachment img
+{
+    width: 29px;
+    float: right;
+    margin-top: 6px;
+    transform: rotate(90deg);
+}
+
+.addContacts
+{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    /* transform: translate(-50%,-50%); */
+    height: 50%;
+    width: 50%;
+    /* max-height: 22%; */
+    z-index:100;
+}
+
+.addContacts .row:first-child
+{
+    position:fixed;
+    width: 50%;
+    background: #009fdb;
+    }
+.addContacts .scroll .finalList
+{  
+    overflow-y: auto;
+    height:400px;
+    overflow-x: hidden;
+}
+
+.addContacts >.scroll > .list > div:nth-child(2)
+{
+    margin-top:50px !important;
+}
+.addContacts .row .h-title
+{
+    margin-top:8px;
+    }
+    .addContacts .row .button-clear
+{
+    color:White;
+    }
+    
+    .btn 
+    {
+        width:100%;
+        margin:0;
+        background-color:#009fdb;
+    }
+    .btn-footer
+    {
+        padding:0;    
+    }
+    
+    .mail {
+    margin-left: 40px;
+}
+
+.right-btns {
+    width: 92%;
+    margin-right:3%;
+}
+
+.addContacts div
+{
+    z-index:100;
+    }

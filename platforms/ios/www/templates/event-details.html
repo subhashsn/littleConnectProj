@@ -1,0 +1,60 @@
+<ion-view view-title="Event Details">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+      <ion-refresher on-refresh="doRefresh($event)">
+          <ion-refresher-content pulling-icon="arrow-dropdown"
+                                 pulling-text="Pull to refresh"
+                                 refreshing-spinner="circles"
+                                 refreshing-text="Refreshing...">
+          </ion-refresher-content>
+      </ion-refresher>
+   <div class="event-row" ng-controller="PlaylistsCtrl">
+     <div class="date-col">
+      <div class="red-date">14</div>
+      <div>AUG</div>
+   </div>
+   <div class="event-title">
+     <div class="title-main" id="eventName"></div>
+      <div class="title-sub">Hosted by ABC * Public</div>
+   </div>
+   <div class="ctrl-btm-row">
+    <div class="row">
+      <div class="col">Interested
+        <div class="icon ion-ios-star"></div>
+      </div>
+      <div class="col">Going
+        <div class=" icon ion-ios-checkmark-empty"></div>
+      </div>
+      <div class="col">Share
+        <div class="icon ion-forward"></div>
+      </div>
+      <div class="col">More <div class="icon ion-ios-more"></div></div>
+    </div>
+   </div>
+
+   <div class="timing">
+     <div class="t-icon">
+       <i class="ion-ios-clock-outline"></i>
+     </div>
+     <div class="t-desc">
+      <div> 14th August</div>
+       <div class="title-sub">Hosted by ABC * Public</div>
+     </div>
+   </div>
+ <div class="location">
+     <div class="t-icon">
+       <i class="ion-ios-location-outline"></i>
+     </div>
+     <div class="t-desc">
+      <div> 14th August</div>
+       <div class="title-sub">Hosted by ABC * Public</div>
+     </div>
+   </div>
+   </div>
+
+  </ion-content>
+     <button class="button icon ion-ios-undo-outline add-btn back-btn" ng-click="backtoCalander()"></button>
+</ion-view>

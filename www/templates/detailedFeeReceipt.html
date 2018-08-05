@@ -1,0 +1,72 @@
+﻿<ion-modal-view class="detailedFeeReceipt">
+       <ion-header-bar class="bar bar-header custom-header">
+            <div class="row">
+                <div class="cancel">
+                    <button class="button button-clear button-primary mm-btn" id="cancelReceipt" ng-click="detailedReceipts.hide()">
+                        <div class="middleAlign"><</div>
+                    </button>
+                </div>
+                <div class="text">
+                    <div class="invoiceNo">{{detailedFeeReceipt.ReceiptNumber}}</div>
+                </div>
+             </div>
+            <div class="row">
+                <div class="invoiceAmt">Rs.{{detailedFeeReceipt.Balance.toFixed(2)}}</div>
+                <div class="studentName">{{detailedFeeReceipt.StudentName}}</div>
+             </div>
+            <div class="row">
+                <div class="col-25 edit"><img src="img/searchicon.png"/><div>Edit</div></div>
+                <div class="col-25 payements"><img src="img/searchicon.png"/><div>Payments</div></div>
+                <div class="col-25 studentName"><img src="img/searchicon.png"/><div>Send Remainder</div></div>
+                <div class="col-25 more"><img src="img/searchicon.png"/><div>More</div></div>
+             </div>                  
+        </ion-header-bar>
+        <ion-content>
+            <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content pulling-icon="arrow-dropdown"
+                                       pulling-text="Pull to refresh"
+                                       refreshing-spinner="circles"
+                                       refreshing-text="Refreshing...">
+                </ion-refresher-content>
+            </ion-refresher>
+              <div class="row list-item">
+                <div id="triangle-topleft" class="{{detailedFeeReceipt.className}}"></div>
+                <div id="triangle-topleft1"></div>
+                <div class="triangle-text {{detailedFeeReceipt.className}}">{{detailedFeeReceipt.status}}</div>
+                <div class="rightAlign" style="float: right;padding-right: 15px;width: 100%;">
+                      <div class="invoiceNumber"><span>Invoice #:</span> &nbsp;{{detailedFeeReceipt.ReceiptNumber}}</div>
+                      <div class="dateofissue"><span>Invoice Date:</span> &nbsp;{{detailedFeeReceipt.ReceiptDate}}</div>
+                      <div class="feeDueDate"><span>Due Date:</span> &nbsp;{{detailedFeeReceipt.ReceiptDate}}</div>
+                </div>
+              </div>
+              <div class="row list-item" ng-repeat="item in detailedFeeReceipt.data">
+                   <div class="leftAlign col-50">
+			       	    <div style="display:block;font-weight:bold">{{item.FeeTypeName}}</div>                            
+			       	    <div style="display:block">Inst Amt &nbsp;:&nbsp{{item.RcvdAmt}}</div>
+                        <div style="display:block">Cum Amt &nbsp;:&nbsp{{item.CumAmt}}</div>          
+                   </div>
+                   <div class="rightAlign col-50">
+                        <div style="display:block;font-weight:bold">Received Amt</div>  
+                        <div style="display:block;font-weight:bold;margin-top:20px">Rs.{{item.RcvdAmt}}</div>                         
+                    </div>
+              </div>
+              <div class="row list-item"> 
+                   <div class="leftAlign col-50"></div>                 
+                   <div class="rightAlign col-50">
+                        <div style="display:block"><span>Pending Amount</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rs.{{detailedFeeReceipt.PendingAmount.toFixed(2)}}</div>                         
+                    </div>
+              </div>
+              <div class="row list-item">
+                   <div class="leftAlign col-50"></div>                   
+                   <div class="rightAlign col-50">
+                        <div style="display:block;"><span>Received Amount</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rs.{{detailedFeeReceipt.ReceivedAmount.toFixed(2)}}</div>                         
+                    </div>
+              </div>
+              <div class="row list-item">
+                   <div class="leftAlign col-50"></div>                   
+                   <div class="rightAlign col-50">
+                        <div style="display:block;font-weight:bold"><span>Balance</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rs.{{detailedFeeReceipt.Balance.toFixed(2)}}</div>                         
+                    </div>
+              </div>
+        </ion-content>
+</ion-modal-view>

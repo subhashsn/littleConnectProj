@@ -1,0 +1,21 @@
+<ion-view ng-controller="AppCtrl" class="login-page" ng-init="loginCheck()">
+  <ion-header-bar>
+    <h1 class="title"></h1>
+  </ion-header-bar>
+  <ion-content scroll="false">
+<div class="brand"><img src="img/textlogo.png"/></div> 
+    <div class="lg-form">
+      <div class="list form">
+        <label class="item item-input  item-stacked-label">
+          <input type="text" class="input" ng-model="username" name="username" placeholder="Username">
+        </label>
+        <label class="item item-input  item-stacked-label">
+          <input type="password" class="input" ng-model="password" name="password" placeholder="Password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive rounded-btn" type="button" ng-click="doLogin(username,password)">Log in</button>
+        </label>
+      </div>
+    <div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,56 @@
+<ion-view view-title="SMS">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()">
+    </button>    
+  </ion-nav-buttons>
+  <ion-content class="sms">
+      <ion-refresher on-refresh="doRefresh($event)">
+          <ion-refresher-content pulling-icon="arrow-dropdown"
+                                 pulling-text="Pull to refresh"
+                                 refreshing-spinner="circles"
+                                 refreshing-text="Refreshing...">
+          </ion-refresher-content>
+      </ion-refresher>
+
+  
+   <div class="ar">
+     <div class="list list-inset ar-input">
+  <label class="item item-input to-input-list">
+    <input type="text" placeholder="contacts" class="ar-input" id="smsContacts"  ng-readonly="true" style="background-color:transparent;">
+  </label>
+  <button class="button button-clear button-positive btn-circle add-r" ng-click="modal.show()">
+         <i class="ion-ios-plus-outline"></i>
+       </button>
+</div>
+
+  <div class="list list-inset text-area">
+  <label class="item item-input">
+    <textarea rows="4" cols="50" ng-model="noofchars" ng-trim="false" class="messageBox ar-input"  maxlength="350" placeholder="Enter Message" id="txtMessageText">
+</textarea>
+  </label>
+    <label style="float:right;margin-right:10px;">{{350 - noofchars.length}}</label>
+</div>
+   </div>
+
+
+       
+  </ion-content>
+  <div class="row sms-footer">
+     <div class="col">
+      <button class="button button-clear button-positive btm-btn" id="showMsgIcon" ng-click="showMsgCount()"> <i class="ion-ios-speedometer-outline"></i></button>
+       </div>   
+
+      <div class="col">
+      <button class="button button-clear button-positive btm-btn" id="addSmsTemplate" ng-click="addSmsTemplate.show()">  <i class="ion-ios-paper-outline"></i></button>
+        </div>   
+
+       <div class="col">
+        <button class="button button-clear button-positive btm-btn">   <i class="ion-ios-bookmarks-outline"></i> </button>
+         </div>   
+
+       <div class="col"></div>  
+        <div class="col"><button class="button button-clear button-positive btm-btn" ng-click=sendSms()>
+        Send
+</button></div>     
+</div>
+</ion-view>

@@ -1,0 +1,81 @@
+<style>
+    #enquiry_tab > i {
+        margin-top: 3px;
+        margin-left: 0px;
+    }
+</style>
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+
+        <ion-nav-bar class="bar-stable">
+            <!-- <ion-nav-back-button>
+            </ion-nav-back-button> -->
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-stable">
+            <!-- <h1 class="title">MeritMerge</h1> -->
+            <!--<div class="cls_img"></div>-->
+            <img class="toolImage" src="" height="100%" width="100%">
+        </ion-header-bar>
+        <ion-content class="left-menu">
+            <div class="list">
+                <a class="item item-icon-left left_icon" href="#app/dashboard" id="dashboard_tab">
+                    <i class="icon ion-ios-home-outline"></i>
+                    Dashboard
+                </a>
+                <a class="item item-icon-left left_icon" href="#/app/calendar" id="calendar_tab">
+                    <i class="icon ion-ios-calendar-outline"></i>
+                    Calendar
+                </a>
+                <a class="item item-icon-left left_icon" href="#app/sms" id="sms_tab">
+                    <i class="icon ion-ios-chatboxes-outline"></i>
+                    SMS
+                </a>
+                <a class="item item-icon-left left_icon" href="#app/mail" id="email_tab">
+                    <i class="icon ion-ios-chatboxes-outline"></i>
+                    Email
+                </a>
+                <a class="item item-icon-left left_icon" href="#app/gallerylist" id="gallery_tab">
+                    <i class="icon ion-ios-camera-outline"></i>
+                    Gallery
+                </a>
+                <a class="item item-icon-left left_icon" href="#app/attendance" id="attendance_tab">
+                    <i class="icon ion-ios-alarm-outline"></i>
+                    Attendance
+                </a>
+                <a class="item item-icon-left left_icon" href="#app/enquiry" id="enquiry_tab" style="display:block !Important;">
+                    <i class="icon ion-paper-airplane"></i>
+                    Pupil Enquiry
+                </a>
+
+                <a class="item item-icon-left left_icon" ng-click="chatOpen()" id="chat_tab" style="display:block !Important;">
+                    <i class="icon ion-ios-chatboxes-outline"></i>
+                    School Diary
+                </a>
+
+                <a class="item item-icon-left left_icon" href="#app/noticeBoard" id="noticeBoard_tab" style="display:block !Important;">
+                    <i class="icon ion-ios-chatboxes-outline"></i>
+                    Notice Board
+                </a>
+
+                <a class="item item-icon-left left_icon" id="feeManagement_tab" href="#/app/feeManagement" style="display:block !Important;">
+                    <i class="icon ion-ios-chatboxes-outline"></i>
+                    Fee Management
+                </a>
+                <a class="item item-icon-left left_icon" href="#app/contact" id="accounts_tab">
+                    <i class="icon ion-iphone"></i>
+                    My Account
+                </a>
+                <a class="item item-icon-left" href="#logout">
+                    <i class="icon ion-log-out"></i>
+                    Logout
+                </a>
+            </div>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

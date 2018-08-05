@@ -1,0 +1,172 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header custom-header">
+    <div class="row">
+      <div class="col-90"><div class="h-title">Add Events</div></div>
+      <div class="col-10"><button class="button button-clear button-primary mm-btn" ng-click="modal.hide()"><i class="ion-ios-close-empty"></i></button></div>
+    </div>
+
+    </ion-header-bar>
+     <ion-content class="padding addcalendar">
+         <ion-refresher on-refresh="doRefresh($event)">
+             <ion-refresher-content pulling-icon="arrow-dropdown"
+                                    pulling-text="Pull to refresh"
+                                    refreshing-spinner="circles"
+                                    refreshing-text="Refreshing...">
+             </ion-refresher-content>
+         </ion-refresher>
+
+       <div class="list">
+         <label class="item item-input item-floating-label">
+          <input type="text" placeholder="Title" id="calenderTitle">
+          </label>
+          <label class="item item-input item-floating-label">
+          <input type="text" placeholder="Location"  id="calenderLocation">
+          </label>
+          </div>
+          <div>
+            <ul class="list">
+
+              <li class="item item-toggle">
+                 All-day
+                 <label class="toggle toggle-assertive" ng-click="allDaysToggle($event)">
+                   <input type="checkbox" id="allday">
+                   <div class="track">
+                     <div class="handle"></div>
+                   </div>
+                 </label>
+              </li>
+              <li>
+              <label class="item item-input item-floating-label">
+              <div class="row">
+              <div class="col-sm-6"><input type="date" placeholder="Start Date" id="calenderStartDate"></div>
+              <div class="col-sm-6"><input type="time" class="timeElements" id="calenderStartTime"></div>
+              </div>
+               
+               
+             </label></li>
+              <li> <label class="item item-input item-floating-label">
+                <div class="row">
+              <div class="col-sm-6"><input type="date" placeholder="End Date" id="calenderEndDate"></div>
+              <div class="col-sm-6"><input type="time" class="timeElements"  id="calenderEndTime"></div>
+              </div>
+                </label>
+              </li>
+            </ul>
+
+
+              <div class="list">
+                <a class="item item-icon-left item-icon-right" ng-click="sheduleToggle()" ng-hide="true">
+                Shedule
+                  <i class="icon ion-ios-arrow-right"></i>
+                </a>
+                <!-- Shedule starts -->
+                <div ng-show="state">
+                    <div class="row shedule-row">
+                      <div class="col-100"> <ion-checkbox ng-model="filter.red" ng-click="allowsheduleToggle()">Allow Schedule</ion-checkbox></div>
+                    </div>
+                    <div ng-show="scheduleform" class="scheduleform">
+                      <div class="list">
+
+                        <label class="item item-input">
+                          <textarea placeholder="Message"></textarea>
+                        </label>
+                      </div>
+                      <div>Send On</div>
+                      <div class="row rm-padd">
+                        <div class="drop-down">
+                         <label class="item">
+                          <select>
+                          <option>2017</option>
+                          <option>2018</option>
+                          <option>2019</option>
+                          <option>2020</option>
+                          <option>2021</option>
+                          <option>2022</option>
+                          <option>2023</option>
+                          <option>2024</option>
+                          <option>2025</option>
+                          <option>2026</option>
+                          </select>
+                        </label>
+                      </div>
+                      <div class="drop-down">
+                       <label class="item">
+                        <select>
+                        <option>Apr</option>
+                        <option>May</option>
+                        <option>Jun</option>
+                        <option>Jul</option>
+                        <option>Aug</option>
+                        <option>Sep</option>
+                        <option>Oct</option>
+                        <option>Nov</option>
+                        <option>Dec</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="drop-down">
+                     <label class="item">
+                      <select>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                      </select>
+                    </label>
+                  </div>
+                      </div>
+                      <!-- second-row -->
+                        <div class="row rm-padd sec-row">
+                          <div class="drop-down">
+                           <label class="item">
+                            <select>
+                              <option>21</option>
+                              <option>22</option>
+                              <option>30</option>
+                            </select>
+                          </label>
+                        </div>
+                        <div class="drop-down">
+                         <label class="item">
+                          <select>
+                            <option>28</option>
+                            <option>29</option>
+                            <option>30</option>
+                          </select>
+                        </label>
+                      </div>
+                        </div>
+                      <!-- row ends -->
+                    </div>
+
+                </div>
+                <!-- Shedule ends-->
+              <a class="item item-icon-left item-icon-right" ng-click="inviteesToggle()">
+                Invitees
+                <i class="icon ion-ios-arrow-right"></i>
+              </a>
+              <!-- Invitees starts-->
+              <div ng-show="inviteesBox" class="inviteesBox">
+                <ion-list>
+                <div ng-repeat="group in groups">
+                  <ion-item class="item-stable" ng-class="{active: isGroupShown(group)}" >
+                      <i class="icon pull-right" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'" ng-click="toggleGroup(group)"></i>
+                    &nbsp;
+                     <input type="checkbox" class="h-check" ng-click="selectAllChild($event)">
+                      <span class="groupname"> {{group.ClassName}}</span>
+                          </ion-item>
+                          <ion-item class="item-accordion" ng-repeat="item in group.data" ng-show="isGroupShown(group)">
+                            <input type="checkbox" class="students" id="{{item.StudentID}}"> {{item.StudentName}}
+                          </ion-item>
+                </div>
+              </ion-list>
+              </div>
+                <!-- Invitees ends-->
+            
+              </div>
+          </div>
+          <div class="btn-footer">
+            <button class="button button-positive btn-red" ng-click="resetEvent()">Reset Event</button>
+            <button class="button button-positive btn-blue" ng-click="addEvent()">Add Event</button>
+          </div>
+     </ion-content>
+  </ion-modal-view>

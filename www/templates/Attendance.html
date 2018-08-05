@@ -1,0 +1,104 @@
+<ion-view view-title="Attendance" ng-controller="PlaylistsCtrl" id="calender_student_dtls">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()"></button>
+        <button class="button button-clear button-primary mm-btn pull-right" ng-click="loadclassWiseStudents.show()">
+            Add
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="p-view student_attendance">
+            <div class="padding calendar-container" ng-init="getStudentCalendarDetails(0,0)"></div>
+            <div class="student-attendance-header" ng-click="openQRScanner()">
+                <div class="student-profile">
+                    <img src="img/defaultImg.jpg" width="100%">
+                </div>
+                <div class="student-details">
+                    <p class="row-1-att" id="student_name">Student Name</p>
+                    <p class="row-2-att" id="class_name">Student Name</p>
+                    <!--<p class="row-2-att" id="absents_count">Student Name</p>-->
+                </div>
+            </div>
+            <div class="bind-student-calendar">
+                <div pickadate="" ng-model="date" min-date="minDate"></div>
+            </div>
+        </div>
+        <!-- parent attendance section ends -->
+        <!-- Management attendance -->
+        <div class="m-view admin-attendance">
+            <!-- section two starts -->
+            <section class="s-two">
+                <div class="row">
+                    <div class="col-40" ng-init="loadClassForAttendance()">
+                        <select class="mm-input" id="options_cls" ng-model="selected" ng-change="loadStudentForAttedance(selected)"
+                                ng-options="item.ClassId as item.ClassName for item in attendanceClass"></select>
+                    </div>
+                    <div class="col-40">
+                        <input type="date" name="attandence" class="mm-input to-right" id="set_date_for_attendance" ng-change="getAttendanceDateWise($event)" ng-model="myValue" max="">
+                    </div>
+                    <div class="col-20">
+                        <label class="toggle toggle-positive">
+                            <input type="checkbox" class="check_all_stu" ng-click="check_all_students($event)">
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="list-group sms scroll-content ionic-scroll overflow-scroll  has-header" style="height: 500px;">
+                    <div class="list-item row" ng-repeat="_x in attendanceStudent | orderBy:'StudentName'">
+                        <!-- <div class="col-30">
+                           <div class="thumb">
+                           <img src="img/stud-thumb.jpg"/>
+                           </div>
+                         </div>-->
+                        <div class="col-30">
+                            <p style="padding-top: 16px;">
+                                {{$index + 1}}
+                            </p>
+                        </div>
+                        <div class="col-50 thumb-dec">
+                            <p style="padding-top: 16px;">{{_x.StudentName}}</p>
+                            <!--<p>Decription fashdfkhdskhfdsh </p>-->
+                        </div>
+                        <div class="col-20 last-blk">
+                            <!--<span class="ion-ios-help help-icon"></span>-->
+                            <label class="toggle toggle-positive">
+                                <input type="checkbox" class="students_class" id="student_{{_x.StudentId}}">
+                                <div class="track">
+                                    <div class="handle"></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div ng-show="showNoStudents" class="no_students">No Students</div>
+                    <div ng-show="holidayMsg" class="no_students">Today Holiday</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Management attendance ends-->
+    </ion-content>
+    <div class="row sms-footer" style="left:0;">
+        <div class="col">
+            <button ng-show="saveNoStudents" class="button button-clear button-positive btm-btn" ng-click="saveAttendance()">Save</button>
+        </div>
+
+        <div class="col"></div>
+
+        <div class="col"></div>
+
+        <div class="col"></div>
+        <div class="col">
+            <button style="display:none;" class="button button-clear button-positive btm-btn" ng-click="PublishAttendance()">
+                Publish
+            </button>
+        </div>
+    </div>
+</ion-view>

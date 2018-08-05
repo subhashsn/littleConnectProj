@@ -1,0 +1,34 @@
+<ion-view>
+
+  <div class="bar bar-header bar-stable" ng-click="goBack()">
+           <div class="row top-bar-grid">
+                <button class="button">Back</button>
+           </div>
+  </div>
+    <ion-content scroll="true">
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+      <!-- Development purpose-->
+      <div class="col text-center">
+
+          <button class="button button-dark" ng-click="sendNotification()" style="padding-top: 43px;">
+          Send Notification
+          </button>
+          <p>No of UnRead counts : {{unreadMesgsCount}}</p>
+      </div>
+      <div ng-repeat="Object in listOfObjects.slice().reverse()" ng-click="markMessageRead(Object)">
+        <p>title:{{Object.title}}</p>
+        <p>Date: {{Object.messagedate}}</p>
+        <p>Message: {{Object.message}}</p>
+        <p ng-if= 'Object.flag =="true"' >Status:Read</p>
+        <p ng-if='Object.flag == "false"'>Status:UnRead</p>
+    ________________
+      </div>
+      <div class="no-data" ng-show="nodata"><p>No Data Available</p></div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,47 @@
+﻿<ion-modal-view class="addFeeReceiptTemplate">
+       <ion-header-bar class="bar bar-header custom-header">
+            <div class="row">
+                <div class="col-15 cancel">
+                <button class="button button-clear button-primary mm-btn" id="cancelReceipt" ng-click="addReceiptItems.hide()">
+                    <div class=""><span class="arrow"><</span>Back</div>
+                </button>
+                </div>
+                <div class="col-75 text">
+                    <div class="middleAlign">
+                        <div class="h-title">Item Information</div>
+                    </div>
+                </div>
+                <div class="col-10 save">
+                   <button class="button button-clear button-primary mm-btn" id="saveReceipt" ng-click="saveFeeReceipt.hide()">
+                       <div class="">Save</div>
+                   </button>
+                </div>
+             </div>               
+        </ion-header-bar>
+        <ion-content>    
+            <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content pulling-icon="arrow-dropdown"
+                                       pulling-text="Pull to refresh"
+                                       refreshing-spinner="circles"
+                                       refreshing-text="Refreshing...">
+                </ion-refresher-content>
+            </ion-refresher>                     
+              <div class="row list-item">
+                    <div class="leftAlign col-50 studentName">Item</div>                  
+                    <div class="rightAlign col-50"><div class="addItem"><span class="itemName">Meritmerge App</span><span class="arrow">></span></div></div>
+              </div>
+              <div class="row list-item">
+                <div class=""  style="width: 100%;padding: 10px 15px 10px 20px;">
+                    <div style="width:100%">Description</div>
+                     <div style="width: 100%;border: 1px solid;border-left-color: blue;margin: 10px 0px;border-radius: 5px;">
+                        <textarea rows="4" placeholder="" id="itemDescription" style="padding:10px"></textarea>
+                     </div>
+                 </div>
+              </div>
+              <div class="row list-item">
+                    <div class="leftAlign col-50" style="color:Red">Rate (INR)</div>
+                    <div class="rightAlign col-50 RcptAmt"><span style="color:#009fdb">3000.00</span></div>
+              </div>
+              
+        </ion-content>
+</ion-modal-view>

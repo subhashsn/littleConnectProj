@@ -1,0 +1,15 @@
+<ion-view view-title="Qr Code Reader" ng-init="getGalleryFolder()" id="qrCodeReader">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-left button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="qr-code">
+      <ion-refresher on-refresh="doRefresh($event)">
+          <ion-refresher-content pulling-icon="arrow-dropdown"
+                                 pulling-text="Pull to refresh"
+                                 refreshing-spinner="circles"
+                                 refreshing-text="Refreshing...">
+          </ion-refresher-content>
+      </ion-refresher>
+  </ion-content>
+</ion-view>

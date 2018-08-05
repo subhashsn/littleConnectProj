@@ -1,0 +1,41 @@
+<ion-view view-title="Settings">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()"></button>
+    </ion-nav-buttons>
+    <ion-content class="settings scroll-content" scroll="y">
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="phone-image">
+            <img src="img/phone.png" />
+        </div>
+        <p class="version">Version 2.7</p>
+        <p class="version-text">
+            If you have any queries about meritmerge app or want to share your experience with us,
+            feel free to reach out to us and our support would be happy to help
+            </br></br>Working hours 09:00am to 05:00pm.
+        </p>
+        <div class="list-group">
+            <div class="list">
+
+                <a class="item item-icon-right" href="tel:9900570286">
+
+                    Call Us
+                    <i class="icon ion-ios-arrow-right"></i>
+                </a>
+
+                <a class="item item-icon-right" href="mailto:info@meritmerge.com">
+
+                    Email Us
+                    <i class="icon ion-ios-arrow-right"></i>
+                </a>
+
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

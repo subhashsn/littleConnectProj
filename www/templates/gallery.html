@@ -1,0 +1,30 @@
+<ion-view view-title="Gallery" id="galleryThumbnails">
+  <ion-nav-buttons side="left">
+    <button class="button button-left button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+      <ion-refresher on-refresh="doRefresh($event)">
+          <ion-refresher-content pulling-icon="arrow-dropdown"
+                                 pulling-text="Pull to refresh"
+                                 refreshing-spinner="circles"
+                                 refreshing-text="Refreshing...">
+          </ion-refresher-content>
+      </ion-refresher>
+  <div class="row">
+    <div class="col-md-5">
+    <div class="file-button col">
+	    Add Photo / Video
+	    <div class="_3jk">
+			<input type="file" id="js_3" name="file[]" multiple accept="image/*" onchange="addImageToGallery()" title="Upload profile picture" class="_n _5f0v" multiple/>
+			<input style="color: Black" type="hidden" id="filenames" value=""/>
+            <input type="hidden" id="hdnimagesource" />
+        </div>
+        </div>
+    </div>       
+   </div>
+    <ion-gallery ion-gallery-items="items" ion-gallery-row="2"></ion-gallery>
+
+  </ion-content>
+    <button class="button icon ion-ios-undo-outline add-btn back-btn" ng-click="backtoAlbum()"></button>
+</ion-view>

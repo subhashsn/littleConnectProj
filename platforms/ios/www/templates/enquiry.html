@@ -1,0 +1,264 @@
+<ion-view view-title="Enquiry" ng-controller="PlaylistsCtrl">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()"></button>
+
+    </ion-nav-buttons>
+
+
+    <ion-content ng-init="loadStudentEnquiry()" id="listEnq">
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <style>
+            #listEnq .list {
+                width: 92%;
+                padding: 0;
+                margin: 0;
+                margin-left: 4%;
+            }
+
+            select {
+                width: 100%;
+                height: 30px;
+            }
+
+            input::-webkit-input-placeholder {
+                color: Gray !important;
+            }
+
+            input:-moz-placeholder {
+                /* Firefox 18- */
+                color: Gray !important;
+            }
+
+            input::-moz-placeholder {
+                /* Firefox 19+ */
+                color: Gray !important;
+            }
+
+            input:-ms-input-placeholder {
+                color: Gray !important;
+            }
+
+            .nototp, #enquiryVideoTab, .otpEnq {
+                display: none;
+            }
+        </style>
+
+        <!--enquiry video tag start-->
+        <div class="list" style="height:100%;width:100%;float:left;" id="enquiryVideoTab">
+            <video style="height:90%;width:92%;margin-top: 4%;background:black;" controls id="enqVideo">
+                <!--<source src="http://www.meritmerge.com/SchoolImages/64/Gallery/526/20180429033317831_$_VID-20170306-WA0008.mp4" id="enquiryVideoSrc" />-->
+                <source src="" id="enquiryVideoSrc" />
+            </video>
+            <div class="list" style="text-align:center;float:left;margin-top: 1.5%;">
+                <input type="button" id="btnShowOTPscreen" ng-click="showOTPScreen()" value="Next">&nbsp;&nbsp;
+            </div>
+        </div>
+        <!--enquiry video tag end-->
+        <input type="hidden" id="hasOtp" />
+        <input type="hidden" id="hasVideo" />
+        <div class="otpEnq">
+            <br />
+            <h3 style="text-align:center;" class="enterOTP">Enter OTP</h3>
+            <h3 style="text-align:center;" class="generateOTP">Verify your mobile number</h3>
+            <pre style="text-align:center;" class="generateOTP">Little Connect will send a SMS to verify your mobile number. Enter your mobile number</pre>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label" style="margin: 50px;">
+                    <input type="number" id="txtForMobNo" maxlength="10" placeholder="Enter Mobile Number" title="Enter Mobile No" style="text-align:center;">
+                    <input type="number" id="txtOtp" maxlength="5" style="display:none;text-align:center;" placeholder="Please Enter OTP">
+                </label>
+
+            </div>
+
+            <div class="list" style="text-align:center;">
+                <input type="button" id="btnSendOTP" ng-click="generateOTP()" value="Next" />&nbsp;&nbsp;
+                <input type="button" id="btnVerify" style="display:none;" ng-click="verifyOTP()" value="Verify" />&nbsp;&nbsp;
+                <input type="button" id="btnOTPclear" ng-click="cancelOTP()" style="display:none;" value="Back" />&nbsp;&nbsp;
+
+            </div>
+        </div>
+
+        <div class="nototp" style="display:none;">
+            <div class="list" style="margin-top:1%;">
+                <label class="item item-input item-stacked-label">
+                    <input type="text" id="txtFirstName" placeholder="Child's Name" title="Child's">
+                </label>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <select class="form-control input-sm" placeholder="Section" id="txtClass" title="Class" required></select>
+                </label>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <input type="date" maxlength="10" placeholder="Date Of Birth" id="txtDateOfBirth" class="mydate form-control input-sm" title="Date of Birth">
+                </label>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <input type="text" id="txtFatherName" placeholder="Father Name" class="form-control input-sm toTitleCase" title="Father Name" required>
+                </label>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <input type="text" id="txtFathMob1" placeholder="Mobile Number" maxlength="10" class="form-control input-sm" title="Mobile Number" disabled readonly>
+                </label>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <input type="text" id="txtMotherName" placeholder="Mother Name" class="form-control input-sm toTitleCase" title="Mother Name">
+                </label>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <input type="text" id="txtMothMob1" placeholder="Mobile Number" maxlength="10" class="form-control input-sm" title="Mobile Number">
+                </label>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <input type="text" id="txtEmail" placeholder="Email" class="form-control input-sm" title="Email">
+                </label>
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <input type="text" id="txtOccupation" placeholder="Occupation" class="form-control input-sm toTitleCase" title="Occupation">
+                </label>
+            </div>
+
+            <div class="list">
+                <!-- <label class="item item-input item-stacked-label">             -->
+                <label class="radio-inline">
+                    <input type="radio" value="M" id="rardioMale" placeholder="Male" class="genderCheck" title="Male" checked="checked" name="optionsRadios">
+                    Male
+                </label>
+                <label class="radio-inline ">
+                    <input type="radio" value="F" id="rardioFemale" placeholder="Female" class="genderCheck" title="Female" name="optionsRadios">
+                    Female
+                </label>
+                <!--</label>     -->
+            </div>
+
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <textarea id="txtNote" height="300px" title="Notes" name="Notes" placeholder="Notes.."></textarea>
+                </label>
+            </div>
+
+            <div class="list" style="display:none;">
+                <label class="item item-input item-stacked-label">
+                    <select class="form-control styleWidthdsgn pull-right" id="ddlType" style="border:none;">
+                        <option selected>Email</option>
+                        <option>Call</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="list" style="display:none;">
+                <label class="item item-input item-stacked-label">
+                    <select class="form-control styleWidthdsgn pull-right" id="ddlAssigned" style="border:none;"></select>
+                </label>
+            </div>
+
+            <div class="list" style="display:none;">
+                <label class="item item-input item-stacked-label">
+                    <input id="ddlRemainder" type="date" class="mydate form-control styleWidthdsgn pull-left" placeholder="Rremainder date">
+                </label>
+            </div>
+
+            <div class="list" style="display:none;">
+                <label class="item item-input item-stacked-label">
+                    <select class="form-control styleWidthdsgn pull-right" id="ddlremainderTime" style="border:none;">
+                        <option>12:00am</option>
+                        <option>12:30am</option>
+                        <option>1:00am</option>
+                        <option>1:30am</option>
+                        <option>2:00am</option>
+                        <option>2:30am</option>
+                        <option>3:00am</option>
+                        <option>3:30am</option>
+                        <option>4:00am</option>
+                        <option>4:30am</option>
+                        <option>5:00am</option>
+                        <option>5:30am</option>
+                        <option>6:00am</option>
+                        <option>6:30am</option>
+                        <option>7:00am</option>
+                        <option>7:30am</option>
+                        <option>8:00am</option>
+                        <option>8:30am</option>
+                        <option>9:00am</option>
+                        <option>9:30am</option>
+                        <option>10:00am</option>
+                        <option>10:30am</option>
+                        <option>11:00am</option>
+                        <option>11:30am</option>
+                        <option>12:00pm</option>
+                        <option>12:30pm</option>
+                        <option>1:00pm</option>
+                        <option>1:30pm</option>
+                        <option>2:00pm</option>
+                        <option>2:30pm</option>
+                        <option>3:00pm</option>
+                        <option>3:30pm</option>
+                        <option>4:00pm</option>
+                        <option>4:30pm</option>
+                        <option>5:00pm</option>
+                        <option>5:30pm</option>
+                        <option>6:00pm</option>
+                        <option>6:30pm</option>
+                        <option>7:00pm</option>
+                        <option>7:30pm</option>
+                        <option>8:00pm</option>
+                        <option>8:30pm</option>
+                        <option>9:00pm</option>
+                        <option>9:30pm</option>
+                        <option>10:00pm</option>
+                        <option>10:30pm</option>
+                        <option>11:00pm</option>
+                        <option>11:30pm</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="list">
+                <div class="col">
+
+                </div>
+
+                <div class="col">
+
+                </div>
+
+                <div class="col">
+
+                </div>
+
+                <div class="col"></div>
+                <div class="col">
+                    <button class="button button-clear button-positive btm-btn" id="btnSaveEnquiry" ng-click="addEnquiry()" />
+                    Save
+                </div>
+            </div>
+
+        </div>
+
+
+    </ion-content>
+
+
+
+</ion-view>

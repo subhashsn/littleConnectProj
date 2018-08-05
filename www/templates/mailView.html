@@ -1,0 +1,39 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header custom-header">
+        <div class="row">
+            <div class="col-90"><div class="h-title">Email View</div></div>
+            <div class="col-10"><button class="button button-clear button-primary mm-btn" ng-click="modal.hide()"><i class="ion-ios-close-empty"></i></button></div>
+        </div>
+
+    </ion-header-bar>
+    <ion-content>
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="list card">
+            <ion-item class="item-icon-left">
+                <i class="icon ion-ios-email-outline"></i>
+                <h2>{{selected_emails.from}}</h2>
+                <p>
+                    <span class="email-text">
+                        {{selected_emails.subject}}
+                    </span>
+                    <span class="item-note email-text">
+                        {{selected_emails.date | date:'EEE M/d/yyyy h:mm a'}}
+                    </span>
+                </p>
+            </ion-item>
+
+            <ion-item class="item-text-wrap email-body-text" ng-bind-html="trustAsHtml(selected_emails.body)" style='overflow:auto;'>
+                <!-- {{selected_emails.body}}-->
+
+            </ion-item>
+
+        </div>
+    </ion-content>
+
+</ion-modal-view>

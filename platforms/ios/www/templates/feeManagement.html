@@ -1,0 +1,70 @@
+﻿<ion-view view-title="Fee Management" id="feeManagement">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()">
+    </button> 
+    <button class="button button-clear button-positive btn-circle add-r" ng-click="openAddReceipt()">
+         <div class="addFeeReciept">+</div>
+       </button>   
+  </ion-nav-buttons>
+  <ion-content class="feeManagement">
+      <ion-refresher on-refresh="doRefresh($event)">
+          <ion-refresher-content pulling-icon="arrow-dropdown"
+                                 pulling-text="Pull to refresh"
+                                 refreshing-spinner="circles"
+                                 refreshing-text="Refreshing...">
+          </ion-refresher-content>
+      </ion-refresher>
+        <ul class="tabs">
+				<li class="tab-link button-white button-xs first active-tab-blue" data-tab="tab-1" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-1').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-1\']').addClass('active-tab-blue');"><div class="middleAlign">Active</div></li>
+				<li class="tab-link button-white button-xs" data-tab="tab-2" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-2').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-2\']').addClass('active-tab-blue');"><div class="middleAlign">Archived</div></li>
+				<!--	<li class="tab-link button-white button-xs" data-tab="tab-3" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-3').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-3\']').addClass('active-tab-blue');">Email</li> -->
+				<li class="tab-link button-white button-xs last" data-tab="tab-4" onclick="$('.tab-content').removeClass('active-tab-content');$('#tab-4').addClass('active-tab-content');$('li.tab-link').removeClass('active-tab-blue');$('li[data-tab=\'tab-4\']').addClass('active-tab-blue');"><div class="middleAlign">Deleted</div></li>
+		</ul>
+       <div id="tab-1" class="tab-content active-tab-content">
+				<!-- Active -->
+				<div role="main" class="ui-content">
+					<!--- <div class="content-primary"> -->
+					<div class="search">
+                        <img class="search-icon" src="img/searchicon.png" style="display:block">
+						<input type="search" id="searchreceipts" onkeyup="searchFunction()" placeholder="Search by Student or Invoice #">
+					</div>
+				<!--/ </div> content-primary -->	
+				</div>
+                <ion-list>
+                    <div class="list-item receipt-list" ng-repeat="receipt in receipts" ng-receiptid="{{receipt.FeeReceiptId}}" >
+                        <div ng-click="detailedReceipt(receipt)">
+                           <div class="row"> 
+                                <div class="leftAlign col-75 studentName"> 
+                                    {{receipt.StudentName.split("|")[0] + " - " + receipt.ClassName}} 
+                                </div>
+                                <div class="rightAlign col-25 rcptAmt">
+                                    Rs.{{receipt.RcptAmt.toFixed(2)}}
+                                </div>
+                           </div>
+                           <div class="row"> 
+                                <div class="leftAlign col-75 rcptNo"> 
+                                    INV-{{receipt.ReceiptNo}} 
+                                </div>
+                                <div class="rightAlign col-25 rcptStatus">
+                                    Overdue
+                                </div>
+                           </div>
+                           <div class="row"> 
+                                <div class="leftAlign col-100 rcptDate"> 
+                                    {{receipt.ReceiptDate}} 
+                                </div>
+                           </div> 
+                    </div>                                       
+                    </div>
+                </ion-list>
+		</div>
+        <div id="tab-2" class="tab-content">
+			<!-- Archived -->
+			<p>Coming Soon!</p>
+		</div>
+        <div id="tab-4" class="tab-content">
+			<!-- Deleted -->
+			<p>Coming Soon!</p>
+		</div>
+  </ion-content>  
+</ion-view>

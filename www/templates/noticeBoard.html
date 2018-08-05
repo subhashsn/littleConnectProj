@@ -1,0 +1,66 @@
+﻿<ion-view view-title="Notice Board" id="noticeBoard">
+<ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()">
+    </button>
+   <!-- <button class="button button-clear button-primary mm-btn pull-right"  ng-click="loadclassWiseStudents.show()" style="left: 90%;position: absolute;top: 4px;">
+        <span style="font-size:40px;font-weight:900;color:white">+</span>
+    </button>-->
+  </ion-nav-buttons>
+    <ion-content class="noticeBoard">
+
+    <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content 
+                    pulling-icon="arrow-dropdown"
+                    pulling-text="Pull to refresh"
+                    refreshing-spinner="circles"
+                    refreshing-text="Refreshing...">
+                </ion-refresher-content>
+        </ion-refresher>
+
+  <div class="add-album-row">
+       <button class="button button-clear button-positive pull-right" ng-click="addAlbum()">
+         <i class="ion-ios-plus-outline"></i>
+       </button>
+   </div>
+    <div class="addalbum" ng-show="showaddAlbum">
+          <div class="list list-inset">
+          <label class="item item-input mar-5">
+            <input id="Text1" type="text" placeholder="Select List">
+            <span class="arrow" style="font-size: 20px;padding-right: 15px;"> v <span>
+          </label>
+          <label class="item item-input mar-5">
+            <input id="txtSubject" type="text" placeholder="Subject">
+            <div class='SubjectImage'></div>
+          </label>
+          <label class="item item-input mar-5">
+            <textarea id="txtDescription" rows=4 type="text" placeholder="Description(Optional)"></textarea>
+          </label>
+          <label class="item item-input mar-5">
+            <textarea id="txtTags" rows=4 type="text" placeholder="Tags(Optional)"></textarea>
+          </label>
+          <button type="button" class="button button-positive btn-blue btn-success add-albm-hd" id="btnSave">Post</button>
+            <!--<button type="button" class="btn btn-default" id="btnRest">Reset</button>-->
+            <!--<button type="button" class="button button-positive btn-blue btn-default can-albm-hb" id="btnCancel" onclick="clearEntry()" >Cancel</button>-->
+            <button class="button button-positive btn-blue btn-default" type="button" id="btnClose" title="Close" ng-click="CloseGalleryMasterSave()">Close</button>
+        </div>
+    </div>
+  <div class="list-item"  style="position: relative;display: flex;padding: 10px;">
+        <div class="profileImage"><img src="/img/stud-thumb.jpg"></div>
+        <div class="contactsDetails">
+            <div class="SubjectBox"><span class="groupName">Grade1-B </span><span class="subject">- Test Event Subject</span><span class="hashtag"> #events</span></div>
+            <div class="DateByBox"><span class="dateDiv">@Jul 8, 2018</span> by <span class="byName">Skoolbeep Demo</span></div>
+        </div>
+        <div class="arrowDiv"><span class="arrow">></span></div>
+        <div class="descriptionBox">Test New Desc</div>
+  </div>
+  <div class="list-item"  style="position: relative;display: flex;padding: 10px;">
+        <div class="profileImage"><img src="/img/stud-thumb.jpg"></div>
+        <div class="contactsDetails">
+            <div class="SubjectBox"><span class="groupName">Route 6i </span><span class="subject"> - School bus trip completed</span><span class="hashtag"> #events</span></div>
+            <div class="DateByBox"><span class="dateDiv">@Jul 10, 2018</span> by <span class="byName">Skoolbeep Demo</span></div>
+        </div>
+        <div class="arrowDiv"><span class="arrow">></span></div>
+        <div class="descriptionBox"> Schoolbus(Route 6i) has reached school premises @3.32 PM by School Transportation Department</div>
+  </div>
+  </ion-content>  
+</ion-view>

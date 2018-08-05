@@ -1,0 +1,117 @@
+<ion-view view-title="Dashboard">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()"></button>
+        <div class="top-ntifi"><i class="ion-android-notifications-none"></i></div>
+    </ion-nav-buttons>
+    <ion-content scroll="false" class="dashboard">
+        <!--<ion-slide-box on-slide-changed="slideChanged(index)">
+            <ion-slide>
+                <div class="">
+                    <img class="user-img" src="img/gender-neutral-user.png"></img>
+                </div>
+                <p id="txtnames"></p>
+                <p id="txtadmission"></p>
+            </ion-slide>
+        </ion-slide-box>-->
+
+        <div class="user-info">
+            <div class="user-image"><img class="user-img" src="img/gender-neutral-user.png"></div>
+            <div class="user-name" id="txtnames"></div>
+            <div id="txtadmission"></div>
+        </div>
+
+        <div class="latest">
+            <div class="row latest-header">
+                <div class="" id="icons">
+                    <a class="item item-icon-left left_icon dashboardIcons" href="#/app/calendar" id="calendar_tab1">
+                        <i class="icon ion-ios-calendar-outline dashboardIoncs_internal"></i>
+                        <p class="dashboardIoncs_text"> Calendar</p>
+                    </a>
+                </div>
+                <div class="" id="icons">
+                    <a class="item item-icon-left left_icon dashboardIcons" href="#/app/gallerylist" id="gallery_tab1">
+                        <i class="icon ion-ios-camera-outline dashboardIoncs_internal"></i>
+                        <p class="dashboardIoncs_text"> Gallery</p>
+                    </a>
+                </div>
+                <div class="" id="icons">
+                    <a class="item item-icon-left left_icon dashboardIcons" href="#/app/mail" id="email_tab1">
+                        <i class="icon ion-ios-chatboxes-outline dashboardIoncs_internal"></i>
+                        <p class="dashboardIoncs_text"> Email</p>
+                    </a>
+                </div>
+            </div>
+            <div class="row latest-header">
+                <div class="" id="icons">
+                    <a class="item item-icon-left left_icon dashboardIcons" href="#/app/sms" id="sms_tab1">
+                        <i class="icon ion-ios-chatboxes-outline dashboardIoncs_internal"></i>
+                        <p class="dashboardIoncs_text"> SMS</p>
+                    </a>
+                </div>
+                <div class="" id="icons">
+                    <a class="item item-icon-left left_icon dashboardIcons" href="#/app/attendance" id="attendance_tab1">
+                        <i class="icon ion-ios-alarm-outline dashboardIoncs_internal"></i>
+                        <p class="dashboardIoncs_text"> Attendence</p>
+                    </a>
+                </div>
+                <div class="" id="icons">
+                    <a class="item item-icon-left left_icon dashboardIcons" href="#/app/enquiry" id="enquiry_tab1">
+                        <i class="icon ion-paper-airplane dashboardIoncs_internal" style="font-size: 29px !important;"></i>
+                        <p class="dashboardIoncs_text"> Enquiry</p>
+                    </a>
+                </div>
+            </div>
+            <!--<div class="latest-contents">
+              <ion-scroll direction="x">
+                <table class="search-table inner">
+                  <tr>
+                    <td>
+                      <table class="lt-table">
+                        <tr  id="latestEvents">
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+                </ion-scroll>
+            </div>-->
+            <!-- latest content ends -->
+            <!--  <div class="Updates">
+               <div class="u-header">School Holidays</div>
+               <div class="update-blk" id="holidayDtls">
+               </div>
+               </div> -->
+            <!-- update item ends-->
+        </div>
+        <div class="col text-center" style="display:none;">
+            <button class="button button-dark" ng-click="openNotificationCenter()">
+                Go To NotificationPage
+            </button>
+        </div>
+    </ion-content>
+    <div class="circle-btn" ng-click="floatToggle()" style="display:none;">
+        <span class="ip ion-plus"></span>
+    </div>
+    <div class="floating-box" ng-show="floatContainer">
+        <div class="button-group">
+            <div class="round-btn">
+                <span class="rb-icon icon ion-ios-calendar-outline" ng-click="shortCutViews(1)">
+
+                </span>
+            </div>
+            <div class="round-btn">
+                <span class="rb-icon ion-ios-chatboxes-outline" ng-click="shortCutViews(2)">
+
+                </span>
+            </div>
+            <div class="round-btn">
+                <span class="rb-icon ion-ios-camera-outline" ng-click="shortCutViews(3)">
+
+                </span>
+            </div>
+            <!-- <div class="round-btn">
+                <span class="rb-icon ion-star"></span>
+             </div>-->
+        </div>
+    </div>
+</ion-view>

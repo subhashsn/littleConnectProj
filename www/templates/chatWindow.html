@@ -1,0 +1,129 @@
+<ion-view class="messaging-view" view-title="Chat">
+
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-chevron-left" ng-click="myGoBack()">
+    </button>
+    <div class="chat-head-info">
+      <span class="ion-information-circled" ng-click="chathistory.show()"></span>
+    </div>
+  </ion-nav-buttons>
+    
+  <ion-content class="content-stable" on-swipe-left="hideTime = false" on-swipe-right="hideTime = true" id="msg-content">
+      <ion-refresher on-refresh="doRefresh($event)">
+          <ion-refresher-content pulling-icon="arrow-dropdown"
+                                 pulling-text="Pull to refresh"
+                                 refreshing-spinner="circles"
+                                 refreshing-text="Refreshing...">
+          </ion-refresher-content>
+      </ion-refresher>
+      <div ng-repeat="message in messages" ng-class="{other: message.userId != myId}" class="messages">
+      <div class="message" ng-class="{'slide-right': hideTime, '': !hideTime}">
+        <span>{{ message.text }}</span>
+      </div>
+      <div class="time" ng-class="{'slide-right': hideTime, '': !hideTime}">{{message.time}}</div>
+    </div>
+  </ion-content>
+
+  <script id="templates/browse.html" type="text/ng-template">
+    <ion-modal-view class="browse-model">
+      <ion-content class="padding">
+        <div class="list browse-list">
+
+          <a class="item item-icon-left" href="">
+            <i class="icon ion-ios-camera-outline"></i>
+            Camera
+          </a>
+          <a class="item item-icon-left" href="">
+            <i class="icon ion-images"></i>
+            Photo & Video Library
+          </a>
+
+          <a class="item item-icon-left" href="">
+            <i class="icon ion-ios-paper"></i>
+            Document
+          </a>
+          <a class="item item-icon-left" href="">
+            <i class="icon ion-ios-navigate-outline"></i>
+            Location
+          </a>
+        </div>
+        <button class="button button-primary full-width" ng-click="browsemodal.hide()">Cancel</button>
+      </ion-content>
+    </ion-modal-view>
+  </script>
+  <script id="templates/chathistory.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title">Conversation Details</h1>
+        <button class="button button-clear button-primary" ng-click="chathistory.hide()">Done</button>
+      </ion-header-bar>
+      <ion-content class="group-info">
+        <div class="list">
+
+          <div class="item item-divider group-header">
+            GROUP NAME
+          </div>
+          <a class="item">
+            L. Vickory. R.s
+          </a>
+          <div class="item item-divider">
+          </div>
+
+          <div class="item item-icon-left item-blue">
+            <i class="icon ion-chatbubbles"></i>
+            <span class="center-span">Replies</span>
+            <span class="item-note">
+              <label class="toggle toggle-positive">
+                <input type="checkbox">
+                <div class="track">
+                  <div class="handle"></div>
+                </div>
+              </label>
+            </span>
+          </div>
+
+          <div class="item item-icon-left item-blue">
+            <i class="icon ion-document-text"></i>
+            Email message history
+
+          </div>
+          <div class="item item-divider group-header">
+            PARTICIPANTS
+          </div>
+          <div class="item item-icon-left item-blue">
+              <i class="icon ion-plus-circled"></i>
+              Add people to conversation
+  
+            </div>
+            <div class="item item-avatar">
+                <img src="img/stud-thumb.jpg">
+                <h2>Rahul</h2>
+                <p>You</p>
+            </div>
+              <div class="item item-avatar">
+                  <img src="img/stud-thumb.jpg">
+                  <h2>L. Vicky Roy</h2>
+                  
+              </div>
+                <div class="item item-avatar">
+                    <img src="img/stud-thumb.jpg">
+                    <h2>R.s</h2>
+                    
+                </div>
+
+        </div>
+
+      </ion-content>
+    </ion-modal-view>
+  </script>
+  <ion-footer-bar keyboard-attach class="bar-stable item-input-inset footer-blk">
+    <button class="button icon ion-plus-round button-clear right-ten-margin" ng-click="browsemodal.show()"></button>
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()"
+        on-blur="inputDown()" id="txtMessaging"/>
+    </label>
+    <button class="button button-clear" ng-click="sendMessage()">
+      Send
+    </button>
+  </ion-footer-bar>
+</ion-view>

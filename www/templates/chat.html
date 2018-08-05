@@ -1,0 +1,138 @@
+<ion-view id="chartTitle" view-title="Contacts">
+    <link href="css/CustomMessaging.css" rel="stylesheet">
+    <link href="css/messsages.css" rel="stylesheet">
+
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()"></button>
+        <button class="button button-icon create-group ion-person-stalker" style="width:auto;" id="btnContacts" ng-click=btnContacts()></button>
+        <div class="title title-center header-item" style="left:53px;right:53px;margin: 0;">
+            <div class="lv-header-alt clearfix">
+                <div id="ms-menu-trigger" class="backtoContacts" style="display:none;">
+                    <i id="backtoContacts" class="fa fa-arrow-left" title="back to chat" aria-hidden="true">Back</i>
+                </div>
+                <div class="lvh-label hidden-xs" id="view-Group-students">
+                    <div class="lv-avatar pull-left" style="float:left;">
+                        <img id="selected-logo" src="" alt="">
+                    </div>
+                    <span class="c-black" id="currentselections">
+                        <span style="margin-left: 8px; position: absolute;
+                                    margin-top: 12px; width: 8px; height: 8px; line-height: 8px; border-radius: 50%;
+                                    background-color: #80d3ab;"></span>
+                    </span>
+                </div>
+                <ul class="lv-actions actions list-unstyled list-inline" style="display:none;">
+                    <li><a href="#"><i class="fa fa-check"></i></a></li>
+                    <li><a href="#"><i class="fa fa-clock-o"></i></a></li>
+                    <li>
+                        <a data-toggle="dropdown" href="#"><i class="fa fa-list"></i></a>
+                        <ul class="dropdown-menu user-detail" role="menu">
+                            <li><a href="">Latest</a> </li>
+                            <li><a href="">Oldest</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a data-toggle="dropdown" href="#" data-toggle="tooltip" data-placement="left"
+                           title="Tooltip on left"><span class="glyphicon glyphicon-trash"></span></a>
+                        <ul class="dropdown-menu user-detail" role="menu">
+                            <li><a href="">Delete Messages</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ion-nav-buttons>
+
+    <ion-content class="email custom-container chat" ng-init="loadContactsForMessaging()">
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="list">
+            <div class="ms-menu" id="showRecentList" ng-initial="true" id="ms-scrollbar">
+                <div class="ms-block">
+                    <div class="row">
+                    </div>
+                </div>
+                <!--    <div class="row">
+                                    <div class="col-md-11 syle-txtbox" style="margin-right: 0px;margin-left: 0px;">
+                                        <input type="text" placeholder="search groups" class="form-control input-sm" id="txtGroupSearch">
+                                    </div>
+                                </div>
+                -->
+                <div role="main" class="ui-content">
+                    <!--- <div class="content-primary"> -->
+                    <div class="search row">
+                        <img class="search-icon" src="img/searchicon.png" style="display:block">
+                        <input type="text" placeholder="search groups" class="form-control input-sm" id="txtGroupSearch">
+                    </div>
+                    <!--/ </div> content-primary -->
+                </div>
+                <hr />
+                <div class="row parentCustomRow checkDtlsDsgn" id="bindGroups">
+                </div>
+            </div>
+            <div id="contact-details" class="ms-menu">
+                <div class="row showHideGroup" id="createCustomGroup" style="display:none;">
+                    <div class="col-md-8">
+                        <input type="text" placeholder="create new group" class="form-control input-sm" id="txtNewGroup" maxlength="25" />
+                    </div>
+                    <div class="col-md-2 create-group-style" id="create-group">
+                        <div class="create-group" title="create new group"></div>
+                    </div>
+                    <div class="col-md-2 create-group-style" id="deleteIcon">
+                        <div class="glyphicon glyphicon-trash deleteIconStyle" id="deleteGroup"></div>
+                    </div>
+                </div>
+                <div class="row showHideGroup" id="groupSelectiondetails">
+                </div>
+                <div class="row">
+                    <div class="col-md-2" style="text-align: center;    margin-left: 10px;    margin: 0;    margin-left: 10px;display:none;">
+                        <i id="clickForBack" class="fa fa-arrow-left" title="back to chat" aria-hidden="true">Back</i>
+                    </div>
+                    <!-- <div class="col-md-12 syle-txtbox" style="margin-right: 0px;width:100%; margin-top: -11px;">
+                         <input type="text" placeholder="search contacts" class="form-control input-sm" id="txtSearchContacts" />
+                     </div>-->
+                    <div role="main" class="ui-content">
+                        <!--- <div class="content-primary"> -->
+                        <div class="search row syle-txtbox" style="margin-right: 0px;width:100%; margin-top: -11px;">
+                            <img class="search-icon" src="img/searchicon.png" style="display:block">
+                            <input type="text" placeholder="search contacts" class="form-control input-sm" id="txtSearchContacts" />
+                        </div>
+                        <!--/ </div> content-primary -->
+                    </div>
+                </div>
+                <hr />
+                <div class="row parentCustomRow checkDtlsDsgn" id="bindStudents"></div>
+            </div>
+
+            <div class="ms-body" id="chatWindow">
+                <div class="listview lv-message">
+                    <div class="lv-body" id="msg-content">
+                    </div>
+                    <div class="clearfix">
+                    </div>
+
+                    <ion-footer-bar class="lv-footer ms-reply">
+                        <button class="button button-clear button-positive btn-circle add-r" style="display:none;width: 10%;float: left;left: 0;">
+                            <div class="plusButton">+</div>
+                        </button>
+                        <textarea rows="50" placeholder="Type your message" id="txtMessaging"></textarea>
+                        <button class="" ng-click="sendChatMessage()" style="font-size: 16px !important;margin-left: 0px !important;" s>
+                            Send
+                        </button>
+                    </ion-footer-bar>
+
+                   <!-- <div class="ms-empty-body">
+                        <div class="show-empty-logo"></div>
+                        <div class="show-empty-text vCenter">KEEP YOUR PARENTS CONNECTED</div>
+                    </div>-->
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-view>

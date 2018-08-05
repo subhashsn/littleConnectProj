@@ -1,0 +1,37 @@
+﻿<ion-modal-view>
+       <ion-header-bar class="bar bar-header custom-header">
+    <div class="row">
+      <div class="col-90"><div class="h-title">Add Student</div></div>
+      <div class="col-10"><button class="button button-clear button-primary mm-btn" id="closeReceipts" ng-click="addAllottedStudentsList.hide()"><i class="ion-ios-close-empty"></i></button></div>
+    </div>
+
+    </ion-header-bar>
+        <ion-content class="padding">
+              <!-- Invitees starts-->
+
+            <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content pulling-icon="arrow-dropdown"
+                                       pulling-text="Pull to refresh"
+                                       refreshing-spinner="circles"
+                                       refreshing-text="Refreshing...">
+                </ion-refresher-content>
+            </ion-refresher>
+
+                <ion-list>
+                <div ng-repeat="students in allotedStudents">
+                          <ion-item class="item-accordion">
+                            <input type="radio"  title="{{students.StudentName}}" class="students sms_{{students.ClassId}}" 
+                            id="{{students.StudentID}}" name="group1" classid={{students.ClassId}}> {{students.StudentName}}
+                          </ion-item>
+                </div>
+              </ion-list>
+             
+                <!-- Invitees ends-->
+                     
+   
+    
+<div class="btn-footer">
+            <button class="button btn-red  btn" ng-click="addStudent($event); modal.hide();">ADD</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>

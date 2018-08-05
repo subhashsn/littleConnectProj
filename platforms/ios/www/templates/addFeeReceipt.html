@@ -1,0 +1,130 @@
+﻿<ion-modal-view class="addFeeReceiptTemplate">
+       <ion-header-bar class="bar bar-header custom-header">
+            <div class="row">
+                <div class="col-20 cancel">
+                <button class="button button-clear button-primary mm-btn" id="cancelReceipt" ng-click="addFeeReceipt.hide()">
+                    <div class="middleAlign">Cancel</div>
+                </button>
+                </div>
+                <div class="col-60 text">
+                    <div class="middleAlign">
+                        <div class="h-title">Add Receipt</div>
+                    </div>
+                </div>
+                <div class="col-20 save">
+                   <button class="button button-clear button-primary mm-btn" id="saveReceipt" ng-click="saveFeeReceipt()">
+                       <div class="middleAlign">Save</div>
+                   </button>
+                </div>
+             </div>               
+        </ion-header-bar>
+        <ion-content>
+              <!--<div class="row">
+                    <div class="leftAlign col-50 invoice">Invoice</div>
+                    <div class="rightAlign col-50 doi">Date of Issue</div>
+              </div>
+              <div class="row">
+                    <div class="leftAlign col-50 invoiceno">#000000</div>
+                    <div class="rightAlign col-50 date">DD MM YYYY</div>
+              </div>
+              <div class="no-padding">
+					<div class="add-client"><div class="plusIconDiv"><div class="plusIcon">+</div></div><div class="addClientText">Add Client</div></div>
+					<div class="add-line"><div class="plusIconDiv"><div class="plusIcon">+</div></div><div class="addLineText">Add Line</div></div>
+			  </div>
+              <div class="row">
+                    <div class="leftAlign col-50"></div>
+                    <div class="rightAlign col-50 subtotal">Subtotal <span>0.00</span></div>
+              </div>
+              <div class="row">
+                    <div class="leftAlign col-50"></div>
+                    <div class="rightAlign col-50 totalpayable">Total (INR) <span>0.00</span></div>
+              </div>
+              <div class="row" style="background: white;padding:0">
+                   <div class="leftAlign col-50">
+			       	    <div class="credit-cards" style="display:block">Accept Cards</div>                            
+			       	    <img class="cardimg" src="img/credit-card.png" style="display:block">
+                   </div>
+                   <div class="rightAlign col-50">
+                        <div class="middleAlign">
+			            	<a class="switch switch-1 switch-1-off switch-red" onclick="$('.switch-red').hide();$('.switch-green').show();">
+			            		<span></span>
+			            	</a>
+			            </div>
+                        <div class="middleAlign">
+			            	<a class="switch switch-1 switch-1-on switch-green" style="display:none;" onclick="$('.switch-red').show();$('.switch-green').hide();">
+			            		<span></span>
+			            	</a>
+			            </div>
+                    </div>
+              </div>
+              <div class="no-padding"></div>-->
+
+
+              <div class="row list-item heading" style="background: #f4f4f4;">
+                    <div class="leftAlign">STUDENTS DETAILS</div>
+              </div>
+              <div class="row list-item">
+                    <div class="leftAlign col-50 studentName" ng-click="addAllottedStudentsList.show()">Student Name</div>                  
+                    <div class="rightAlign col-50"><div><span class="arrow">></span></div></div>
+              </div>
+              <div class="row list-item heading" style="background: #f4f4f4;">
+                    <div class="leftAlign">ITEM DETAILS</div>
+              </div>
+              <div class="no-padding" style="margin-top:10px;margin-bottom:10px;">
+					<div class="add-client" ng-click="addAllottedStudentsList.show()"><div class="plusIconDiv"><div class="plusIcon">+</div></div><div class="addClientText">Add Student</div></div>
+					<div class="add-line" ng-click="addReceiptFields()"><div class="plusIconDiv"><div class="plusIcon">+</div></div><div class="addLineText">Add Line</div></div>
+			  </div>
+              <div class="row list-item heading" style="background: #f4f4f4;">
+                    <div class="leftAlign">RECEIPT DETAILS</div>
+              </div>
+              <div class="row list-item">
+                    <div class="leftAlign col-50" style="color:Red">Receipt#</div>
+                    <div class="rightAlign col-50 invoiceNo"><input type="text" placeholder="Tap to Enter"/></div>
+              </div>
+              <div class="row list-item">
+                    <div class="leftAlign col-50" style="color:Red">Receipt Date</div>
+                    <div class="rightAlign col-50 invoiceDate"><span>30 Jul 2018</span><span class="arrow">&nbsp;&nbsp;></span></div>
+              </div>
+              <div class="row list-item">
+                    <div class="leftAlign col-50">Due Date</div>
+                    <div class="rightAlign col-50 invoiceDate"><span>30 Jul 2018</span><span class="arrow">&nbsp;&nbsp;></span></div>
+              </div>
+              <div class="row list-item heading" style="background: #f4f4f4;">
+                    <div class="leftAlign">PAYMENT GATEWAYS</div>
+              </div>
+              <div class="row list-item" style="background: white;padding:0">
+                   <div class="leftAlign col-50">
+			       	    <div class="credit-cards" style="display:block">Payment Gateways</div>     
+                   </div>
+                   <div class="rightAlign col-50">
+                        <div class="middleAlign">
+			            	<a class="switch switch-1 switch-1-off switch-red" onclick="$('.switch-1.switch-red').hide();$('.switch-1.switch-green').show();">
+			            		<span></span>
+			            	</a>
+			            </div>
+                        <div class="middleAlign">
+			            	<a class="switch switch-1 switch-1-on switch-green" style="display:none;" onclick="$('.switch-1.switch-red').show();$('.switch-1.switch-green').hide();">
+			            		<span></span>
+			            	</a>
+			            </div>
+                    </div>
+              </div>
+              <div class="row list-item" style="background: white;padding:0">
+                   <div class="leftAlign col-80">
+			       	    <div class="credit-cards" style="display:block">Allow customer to make partial payments for this invoice</div>     
+                   </div>
+                   <div class="rightAlign col-20">
+                        <div class="middleAlign">
+			            	<a class="switch switch-2 switch-2-off switch-red" onclick="$('.switch-2.switch-red').hide();$('.switch-2.switch-green').show();">
+			            		<span></span>
+			            	</a>
+			            </div>
+                        <div class="middleAlign">
+			            	<a class="switch switch-2 switch-2-on switch-green" style="display:none;" onclick="$('.switch-2.switch-red').show();$('.switch-2.switch-green').hide();">
+			            		<span></span>
+			            	</a>
+			            </div>
+                    </div>
+              </div>
+        </ion-content>
+</ion-modal-view>

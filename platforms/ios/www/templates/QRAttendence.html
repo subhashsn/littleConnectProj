@@ -1,0 +1,42 @@
+<ion-view view-title="QR Scanner">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openMenu()"></button>
+    </ion-nav-buttons>
+    <ion-content class="profile scroll-content" scroll="y">
+        <ion-refresher on-refresh="doRefresh($event)">
+            <ion-refresher-content pulling-icon="arrow-dropdown"
+                                   pulling-text="Pull to refresh"
+                                   refreshing-spinner="circles"
+                                   refreshing-text="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="row padd-20">
+            <div class="col-30">
+                <div class="user-image">
+                    <img src="img/stud-thumb.jpg" />
+                </div>
+            </div>
+            <div class="col-70 user-info">
+
+            </div>
+        </div>
+
+        <div class="list-group">
+            <div class="list">
+
+            </div>
+        </div>
+
+        <button onclick="testAll()"><h1>testAll</h1></button>
+        <button onclick="prepare()"><h1>prepare</h1></button>
+        <button onclick="scan()"><h1>scan</h1></button>
+        <button onclick="cancelScan()"><h1>cancelScan</h1></button>
+        <button onclick="frontCamera()"><h1>useFrontCamera</h1></button>
+        <button onclick="backCamera()"><h1>useBackCamera</h1></button>
+        <button onclick="show()"><h1>show</h1></button>
+        <button onclick="hide()"><h1>hide</h1></button>
+        <button onclick="pausePreview()"><h1>pausePreview</h1></button>
+        <button onclick="resumePreview()"><h1>resumePreview</h1></button>
+        <button onclick="destroy()"><h1>destroy</h1></button>
+    </ion-content>
+</ion-view>

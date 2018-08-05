@@ -1,0 +1,48 @@
+﻿<ion-modal-view class="addPupilTemplate" ng-controller="PlaylistsCtrl" id="calender_student_dtls">
+       <ion-header-bar class="bar bar-header custom-header">
+            <div class="row">
+                <div class="cancel" style="width:15%">
+                <button class="button button-clear button-primary mm-btn" id="cancel" ng-click="pupilRegisterAdd.hide()">
+                    <div class=""><span class="arrow"><</span>Back</div>
+                </button>
+                </div>
+                <div class="text" style="width:70%">
+                    <div class="middleAlign">
+                        <div class="h-title">Add Contact</div>
+                    </div>
+                </div>
+                <div class="add" style="width:15%;margin-top: 4px;">
+                    <button class="button button-clear button-primary mm-btn" id="add" ng-click="addPupilRecord()">
+                        <div class="">Add</div>
+                    </button>
+                </div>
+             </div>               
+        </ion-header-bar>
+        <ion-content>
+        <ion-refresher on-refresh="doRefresh($event)">
+                <ion-refresher-content 
+                    pulling-icon="arrow-dropdown"
+                    pulling-text="Pull to refresh"
+                    refreshing-spinner="circles"
+                    refreshing-text="Refreshing...">
+                </ion-refresher-content>
+        </ion-refresher>
+            <div style="background: #f4f4f4;display:none;">
+                <img src="/img/pupilRegister.png">
+            </div>             
+            <div class="row list-item formItem" ng-repeat="item in pupilRegisterParameters">
+                    <!--<div class="leftAlign col-50">{{item.name}}</div>
+                    <div class="rightAlign col-50"><input class="{{item.class}}" placeholder="{{item.name}}" isRequired={{item.required}}/></div>-->
+                    <input type="{{item.type}}" class="{{item.class}}" placeholder="{{item.name}}" isRequired={{item.required}} ng-if="item.class != 'className' && item.class != 'gender'"/>
+
+                    <div class="dropdown" ng-if="item.class == 'className'">
+                        <select class="mm-input {{item.class}}"  id="options_cls" ng-model="selected" ng-options="item.ClassId as item.ClassName for item in attendanceClass" placeholder="Class">
+                        </select>
+                    </div>
+                    <div class="dropdown" ng-if="item.class == 'gender'">
+                        <select class="mm-input {{item.class}}" id="options_gender" ng-model="selected" ng-options="item as item for item in genderList" placeholder="Gender">
+                        </select>
+                    </div>
+            </div>
+        </ion-content>
+</ion-modal-view>
